@@ -10,8 +10,7 @@
     <enforce_acl>cf9d01d3e73003009d6247e603f6a990</enforce_acl>
     <http_method>POST</http_method>
     <name>Ingest Payload</name>
-    <operation_script><![CDATA[
-(function process(/*RESTAPIRequest*/ request, /*RESTAPIResponse*/ response) {
+    <operation_script><![CDATA[(function process(/*RESTAPIRequest*/ request, /*RESTAPIResponse*/ response) {
     var STAGING_TABLE = 'x_2226556_server_0_canopi_stg';
     var stagingSysId = '';
 
@@ -25,6 +24,7 @@
         gr.initialize();
         gr.setValue('payload', bodyStr || '');
         gr.setValue('source_system', 'CANOPI');
+        gr.setValue('integration_user', 'b48ea4fe09f64795a6164e1a2dc4fcce');
         stagingSysId = gr.insert();
 
         if (!stagingSysId) {
@@ -249,7 +249,7 @@
     <requires_acl_authorization>true</requires_acl_authorization>
     <requires_authentication>true</requires_authentication>
     <requires_snc_internal_role>true</requires_snc_internal_role>
-    <short_description>Receives a CANOPI server JSON payload, stages it, validates it, and returns status</short_description>
+    <short_description>Receives a CANOPI server JSON payload, stages it, validates it, and returns stat</short_description>
     <sys_policy/>
     <web_service_definition>df6c273f600c4bb5b9b7bfa8073053d1</web_service_definition>
     <web_service_version/>
