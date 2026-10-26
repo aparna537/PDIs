@@ -138,39 +138,23 @@
         }
 
         // ───────────────────────────────────────────────────────────
-        // STEP 5 – Validation passed → Process through ETL + IRE
-        // Invokes CanopiServerProcessor which:
-        //   a) Applies IntegrationHub ETL field mappings
-        //   b) Calls sn_cmdb.IdentificationEngine.createOrUpdateCI()
-        //   c) IRE checks Identification rules (host_name + dns_domain)
-        //   d) IRE applies Reconciliation rules (data source priority)
-        //   e) Creates or updates CI in cmdb_ci_server
-        //   f) Updates staging record with target_table, target_record, state
+        // STEP 5 – All validations passed → set state=pending
+        // The async Business Rule will pick this up and process
+        // through IntegrationHub ETL → IRE → cmdb_ci_server.
+        // The staging record will be updated with the CI result
+        // (target_table, target_record, state=processed).
         // ───────────────────────────────────────────────────────────
         stg.setValue('state', 'pending');
+        stg.setValue('http_response_code', '202');
+        stg.setValue('response_message', 'Request acknowledged. Server ingestion status will be rolled back.');
         stg.update();
 
-        var processor = new x_2226556_server_0.CanopiServerProcessor();
-        var result = processor.processRecord(String(stagingSysId));
-
-        if (result && result.status === 'success') {
-            response.setStatus(200);
-            response.setBody({
-                status: 'success',
-                staging_sys_id: String(stagingSysId),
-                operation: result.operation,
-                ci_sys_id: result.ci_sys_id,
-                ci_class: result.ci_class,
-                message: 'Record ' + result.operation + ' successfully. CI Record ID: ' + result.ci_sys_id
-            });
-        } else {
-            response.setStatus(500);
-            response.setBody({
-                status: 'failed',
-                staging_sys_id: String(stagingSysId),
-                message: result ? result.message : 'ETL/IRE processing failed'
-            });
-        }
+        response.setStatus(202);
+        response.setBody({
+            status: 'acknowledged',
+            staging_sys_id: String(stagingSysId),
+            message: 'Request acknowledged. We will rollback the response of server ingestion status.'
+        });
 
     } catch (e) {
         gs.error('CANOPI ingest handler error: ' + e);
@@ -202,7 +186,7 @@
     <requires_acl_authorization>true</requires_acl_authorization>
     <requires_authentication>true</requires_authentication>
     <requires_snc_internal_role>true</requires_snc_internal_role>
-    <short_description>Receives CANOPI server JSON payload, validates, processes through ETL/IRE, returns CI result</short_description>
+    <short_description>Receives CANOPI server JSON payload, stages it, validates it, returns acknowledgment</short_description>
     <sys_policy/>
     <web_service_definition>df6c273f600c4bb5b9b7bfa8073053d1</web_service_definition>
     <web_service_version/>
