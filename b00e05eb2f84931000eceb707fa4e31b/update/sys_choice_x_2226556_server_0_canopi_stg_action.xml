@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+  <sys_choice_set action="INSERT_OR_UPDATE" apply_defaults="true" field="action" table="x_2226556_server_0_canopi_stg" version="3">
+    <sys_choice_set action="INSERT_OR_UPDATE" apply_defaults="true">
+      <sys_id>cbdaf2fe4e66459491ee78feef422add</sys_id>
+      <element>action</element>
+      <sys_update_name>sys_choice_x_2226556_server_0_canopi_stg_action</sys_update_name>
+      <name>x_2226556_server_0_canopi_stg</name>
+      <sys_class_name>sys_choice_set</sys_class_name>
+      <sys_scope display_value="x_2226556_server_0">b00e05eb2f84931000eceb707fa4e31b</sys_scope>
+      <sys_package display_value="x_2226556_server_0" source="b00e05eb2f84931000eceb707fa4e31b">b00e05eb2f84931000eceb707fa4e31b</sys_package>
+      <sys_name>action</sys_name>
+    </sys_choice_set>
+    <sys_choice action="INSERT_OR_UPDATE" apply_defaults="true">
+      <sys_id>1d3fd4127f8d42d09e87c688e0f2a5ec</sys_id>
+      <name>x_2226556_server_0_canopi_stg</name>
+      <element>action</element>
+      <label>ADD</label>
+      <value>add</value>
+      <sequence>1</sequence>
+      <language>en</language>
+    </sys_choice>
+    <sys_choice action="INSERT_OR_UPDATE" apply_defaults="true">
+      <sys_id>c2de4d3c2c2349aca59d06e1eb8ad638</sys_id>
+      <name>x_2226556_server_0_canopi_stg</name>
+      <element>action</element>
+      <label>DELETE</label>
+      <value>delete</value>
+      <sequence>2</sequence>
+      <language>en</language>
+    </sys_choice>
+    <sys_choice action="INSERT_OR_UPDATE" apply_defaults="true">
+      <sys_id>bf59e5c9852041cfac793a5d87dcdd0b</sys_id>
+      <name>x_2226556_server_0_canopi_stg</name>
+      <element>action</element>
+      <label>BUILD</label>
+      <value>build</value>
+      <sequence>3</sequence>
+      <language>en</language>
+    </sys_choice>
+    <sys_choice action="INSERT_OR_UPDATE" apply_defaults="true">
+      <sys_id>672c7167ca5342f5b685dcb3fbf3726f</sys_id>
+      <name>x_2226556_server_0_canopi_stg</name>
+      <element>action</element>
+      <label>UPDATE</label>
+      <value>update</value>
+      <sequence>4</sequence>
+      <language>en</language>
+    </sys_choice>
+    <sys_choice action="INSERT_OR_UPDATE" apply_defaults="true">
+      <sys_id>5df76842119c4b278a6a5fdd1a351cc1</sys_id>
+      <name>x_2226556_server_0_canopi_stg</name>
+      <element>action</element>
+      <label>GO LIVE</label>
+      <value>go_live</value>
+      <sequence>5</sequence>
+      <language>en</language>
+    </sys_choice>
+    <sys_choice action="INSERT_OR_UPDATE" apply_defaults="true">
+      <sys_id>b071495a9e544f8081809f449d7515bd</sys_id>
+      <name>x_2226556_server_0_canopi_stg</name>
+      <element>action</element>
+      <label>CANCEL</label>
+      <value>cancel</value>
+      <sequence>6</sequence>
+      <language>en</language>
+    </sys_choice>
+    <sys_choice action="INSERT_OR_UPDATE" apply_defaults="true">
+      <sys_id>6cc027574d13468ea40681b893e08bf0</sys_id>
+      <name>x_2226556_server_0_canopi_stg</name>
+      <element>action</element>
+      <label>DECOMMISSION</label>
+      <value>decommission</value>
+      <sequence>7</sequence>
+      <language>en</language>
+    </sys_choice>
+  </sys_choice_set>
+</record_update>
