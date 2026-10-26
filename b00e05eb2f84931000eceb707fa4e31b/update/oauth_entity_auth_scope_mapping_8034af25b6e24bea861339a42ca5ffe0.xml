@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="oauth_entity_auth_scope_mapping">
+  <oauth_entity_auth_scope_mapping action="INSERT_OR_UPDATE" apply_defaults="true">
+    <sys_id>8034af25b6e24bea861339a42ca5ffe0</sys_id>
+    <sys_scope display_value="x_2226556_server_0">b00e05eb2f84931000eceb707fa4e31b</sys_scope>
+    <sys_update_name>oauth_entity_auth_scope_mapping_8034af25b6e24bea861339a42ca5ffe0</sys_update_name>
+    <auth_scope>ea6270a651d24bd696e04d3121ab560c</auth_scope>
+    <oauth_entity>3af7237799cb43cdbdd80f94145b4bad</oauth_entity>
+  </oauth_entity_auth_scope_mapping>
+</record_update>

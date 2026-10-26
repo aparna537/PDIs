@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_auth_scope">
+  <sys_auth_scope action="INSERT_OR_UPDATE" apply_defaults="true">
+    <sys_id>ea6270a651d24bd696e04d3121ab560c</sys_id>
+    <sys_scope display_value="x_2226556_server_0">b00e05eb2f84931000eceb707fa4e31b</sys_scope>
+    <sys_update_name>sys_auth_scope_ea6270a651d24bd696e04d3121ab560c</sys_update_name>
+    <description>Auth scope for CANOPI server integration user and OAuth application</description>
+    <name>CANOPI Server Auth Scope</name>
+  </sys_auth_scope>
+</record_update>
