@@ -1,23 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="oauth_entity">
-  <oauth_entity action="INSERT_OR_UPDATE" apply_defaults="true">
-    <sys_id>3af7237799cb43cdbdd80f94145b4bad</sys_id>
-    <sys_scope display_value="x_2226556_server_0">b00e05eb2f84931000eceb707fa4e31b</sys_scope>
-    <sys_update_name>oauth_entity_3af7237799cb43cdbdd80f94145b4bad</sys_update_name>
-    <access_token_lifespan>1800</access_token_lifespan>
-    <active>true</active>
-    <auth_code_lifespan>300</auth_code_lifespan>
-    <certificate_url/>
-    <client_id>canopi_server_integration</client_id>
-    <default_grant_type>client_credentials</default_grant_type>
-    <id_token_lifespan>1800</id_token_lifespan>
-    <inbound_grant_type>client_credential</inbound_grant_type>
-    <message_signature_lifespan>300</message_signature_lifespan>
-    <name>CANOPI Server Integration</name>
-    <refresh_token_lifespan>8640000</refresh_token_lifespan>
-    <salt>canopi_oauth_salt</salt>
-    <scope_restriction_status>useraccount</scope_restriction_status>
-    <token_format>opaque</token_format>
-    <type>client</type>
-    <user>b48ea4fe09f64795a6164e1a2dc4fcce</user>
-  </oauth_entity>
+    <oauth_entity action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <access_token_lifespan>1800</access_token_lifespan>
+        <active>true</active>
+        <allow_snc_user_exchange>false</allow_snc_user_exchange>
+        <auth_aig_client>false</auth_aig_client>
+        <auth_cimd_client>false</auth_cimd_client>
+        <auth_code_lifespan>300</auth_code_lifespan>
+        <auth_url/>
+        <bff_cookie_exchange_allowed>false</bff_cookie_exchange_allowed>
+        <bind_token_to_session>false</bind_token_to_session>
+        <certificate_url/>
+        <client_id>canopi_server_integration</client_id>
+        <client_secret>﷞﷟﷒478dc1ab2f84931000eceb707fa4e3c0﷬﷔1﷬﷭UbHybV5xflOK2P1WZwUzvA==Lw8oTEcr2mEbJ6FbJRvxuPgl4nSvjiFV02_cS54LTr6CiXb5Jyli7OLIcAQxOfqr﷮﷯</client_secret>
+        <client_type/>
+        <client_uuid/>
+        <code_challenge_method/>
+        <comments/>
+        <default_grant_type>client_credentials</default_grant_type>
+        <extend_refresh_token_expiry>false</extend_refresh_token_expiry>
+        <id_token_lifespan>1800</id_token_lifespan>
+        <inbound_grant_type>client_credential</inbound_grant_type>
+        <jwt_provider/>
+        <login_url/>
+        <logo_url/>
+        <message_signature_lifespan>300</message_signature_lifespan>
+        <mobile_client>false</mobile_client>
+        <name>CANOPI Server Integration</name>
+        <oauth_api_script/>
+        <only_rest_processor>false</only_rest_processor>
+        <protocol_name/>
+        <public_client>false</public_client>
+        <redirect_url/>
+        <refresh_token_lifespan>8640000</refresh_token_lifespan>
+        <refresh_token_url/>
+        <restricted_binding>false</restricted_binding>
+        <revoke_token_url/>
+        <salt>canopi_oauth_salt</salt>
+        <scope_restriction_status>useraccount</scope_restriction_status>
+        <send_client_credentials_as/>
+        <skip_authorize>false</skip_authorize>
+        <sub_claim/>
+        <sys_class_name>oauth_entity</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-10-26 12:39:08</sys_created_on>
+        <sys_id>3af7237799cb43cdbdd80f94145b4bad</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>CANOPI Server Integration</sys_name>
+        <sys_package display_value="Server Inventory - XML" source="x_2226556_server_0">b00e05eb2f84931000eceb707fa4e31b</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Server Inventory - XML">b00e05eb2f84931000eceb707fa4e31b</sys_scope>
+        <sys_update_name>oauth_entity_3af7237799cb43cdbdd80f94145b4bad</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-10-26 12:44:38</sys_updated_on>
+        <token_format>opaque</token_format>
+        <token_url/>
+        <type>client</type>
+        <use_mutual_auth>false</use_mutual_auth>
+        <use_pkce>false</use_pkce>
+        <user display_value="CANOPI Integration">b48ea4fe09f64795a6164e1a2dc4fcce</user>
+    </oauth_entity>
 </record_update>
