@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="oauth_entity">
+  <oauth_entity action="INSERT_OR_UPDATE" apply_defaults="true">
+    <sys_id>3af7237799cb43cdbdd80f94145b4bad</sys_id>
+    <sys_scope display_value="x_2226556_server_0">b00e05eb2f84931000eceb707fa4e31b</sys_scope>
+    <sys_update_name>oauth_entity_3af7237799cb43cdbdd80f94145b4bad</sys_update_name>
+    <access_token_lifespan>1800</access_token_lifespan>
+    <active>true</active>
+    <auth_code_lifespan>300</auth_code_lifespan>
+    <certificate_url/>
+    <client_id>canopi_server_integration</client_id>
+    <default_grant_type>client_credentials</default_grant_type>
+    <id_token_lifespan>1800</id_token_lifespan>
+    <inbound_grant_type>client_credential</inbound_grant_type>
+    <message_signature_lifespan>300</message_signature_lifespan>
+    <name>CANOPI Server Integration</name>
+    <refresh_token_lifespan>8640000</refresh_token_lifespan>
+    <salt>canopi_oauth_salt</salt>
+    <scope_restriction_status>useraccount</scope_restriction_status>
+    <token_format>opaque</token_format>
+    <type>client</type>
+    <user>b48ea4fe09f64795a6164e1a2dc4fcce</user>
+  </oauth_entity>
+</record_update>

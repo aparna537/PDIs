@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="oauth_entity_scope">
+  <oauth_entity_scope action="INSERT_OR_UPDATE" apply_defaults="true">
+    <sys_id>fe26c9031b70485f8778c83261d4b757</sys_id>
+    <sys_scope display_value="x_2226556_server_0">b00e05eb2f84931000eceb707fa4e31b</sys_scope>
+    <sys_update_name>oauth_entity_scope_fe26c9031b70485f8778c83261d4b757</sys_update_name>
+    <name>CANOPI Server Scope</name>
+    <oauth_entity>3af7237799cb43cdbdd80f94145b4bad</oauth_entity>
+    <oauth_entity_scope>useraccount</oauth_entity_scope>
+  </oauth_entity_scope>
+</record_update>
