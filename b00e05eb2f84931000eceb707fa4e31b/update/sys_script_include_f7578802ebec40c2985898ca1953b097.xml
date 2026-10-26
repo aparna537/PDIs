@@ -16,17 +16,28 @@
 CanopiServerProcessor.prototype = {
     initialize: function() {},
 
+    /**
+     * Processes a CANOPI staging record:
+     * 1. Reads and parses the JSON payload
+     * 2. Applies ETL field mappings (mirrors IntegrationHub ETL Transform Definition)
+     * 3. Invokes IRE via sn_cmdb.IdentificationEngine.createOrUpdateCI()
+     * 4. IRE runs Identification rules (host_name + dns_domain) and Reconciliation rules
+     * 5. Creates or updates the CI in cmdb_ci_server
+     * 6. Updates the staging record with the result
+     * @param {string} stagingSysId - sys_id of the staging record
+     * @returns {object|null} result object with CI details or null on failure
+     */
     processRecord: function(stagingSysId) {
         var stg = new GlideRecord('x_2226556_server_0_canopi_stg');
         if (!stg.get(stagingSysId)) {
             gs.error('CanopiServerProcessor: Staging record not found: ' + stagingSysId);
-            return null;
+            return { status: 'error', message: 'Staging record not found' };
         }
 
         var payloadStr = stg.getValue('payload');
         if (!payloadStr) {
             this._updateStaging(stg, 'failed', '', '', 'Payload is empty', '400');
-            return null;
+            return { status: 'error', message: 'Payload is empty' };
         }
 
         var payload;
@@ -34,61 +45,110 @@ CanopiServerProcessor.prototype = {
             payload = JSON.parse(payloadStr);
         } catch (e) {
             this._updateStaging(stg, 'failed', '', '', 'Invalid JSON payload: ' + e, '400');
-            return null;
+            return { status: 'error', message: 'Invalid JSON payload' };
         }
 
-        // Build the IRE payload using CMDB API
+        // ─── STEP 1: ETL Field Mapping ──────────────────────────────────
+        // Mirrors the IntegrationHub ETL Transform Definition field mappings
+        // and script operations (CANOPI Server Transform)
+        var ciData = this._applyETLMappings(payload);
+        gs.info('CanopiServerProcessor: ETL mappings applied for staging record ' + stagingSysId);
+
+        // ─── STEP 2: Invoke IRE (Identification & Reconciliation) ───────
+        // Builds the IRE input payload and calls IdentificationEngine
+        var ireResult = this._invokeIRE(ciData, stagingSysId);
+        if (!ireResult) {
+            this._updateStaging(stg, 'failed', '', '', 'IRE processing returned no result', '500');
+            return { status: 'error', message: 'IRE processing failed' };
+        }
+
+        // ─── STEP 3: Update staging record with CMDB result ─────────────
+        var ciSysId = ireResult.sysId || '';
+        var ciClassName = ireResult.className || 'cmdb_ci_server';
+        var operation = ireResult.operation || 'unknown';
+
+        var responseMsg = 'CI ' + operation + ' successfully via IRE. Class: ' + ciClassName + ', Record ID: ' + ciSysId;
+        this._updateStaging(stg, 'processed', ciClassName, ciSysId, responseMsg, '200');
+
+        gs.info('CanopiServerProcessor: Staging ' + stagingSysId + ' processed - ' + operation + ' CI ' + ciSysId);
+
+        return {
+            status: 'success',
+            operation: operation,
+            ci_sys_id: ciSysId,
+            ci_class: ciClassName,
+            message: responseMsg
+        };
+    },
+
+    /**
+     * Applies ETL field mappings from CANOPI JSON payload to cmdb_ci_server attributes.
+     * This mirrors the script operations in the CANOPI Server Transform ETL definition.
+     */
+    _applyETLMappings: function(payload) {
+        var device = payload.device || {};
+        var location = payload.location || {};
+        var support = payload.support || {};
+
+        return {
+            name: payload.hostName || '',
+            host_name: payload.hostName || '',
+            dns_domain: payload.dnsDomain || '',
+            serial_number: payload.serialNumber || '',
+            short_description: device.description || '',
+            environment: device.environment || '',
+            used_for: device.used_for || '',
+            correlation_id: payload.orderId || '',
+            discovery_source: 'CANOPI',
+            fqdn: (payload.hostName || '') + '.' + (payload.dnsDomain || '')
+        };
+    },
+
+    /**
+     * Invokes the CMDB Identification and Reconciliation Engine.
+     * IRE will:
+     *  - Check Identification rules to find an existing CI (by host_name + dns_domain)
+     *  - Apply Reconciliation rules to determine data source priority
+     *  - Create a new CI or update the existing one in cmdb_ci_server
+     */
+    _invokeIRE: function(ciData, stagingSysId) {
         try {
             var input = {
                 items: [{
                     className: 'cmdb_ci_server',
-                    values: {
-                        name: payload.hostName || '',
-                        host_name: payload.hostName || '',
-                        dns_domain: payload.dnsDomain || '',
-                        serial_number: payload.serialNumber || '',
-                        short_description: payload.device ? payload.device.description || '' : '',
-                        environment: payload.device ? payload.device.environment || '' : '',
-                        used_for: payload.device ? payload.device.used_for || '' : '',
-                        correlation_id: payload.orderId || '',
-                        discovery_source: 'CANOPI',
-                        fqdn: (payload.hostName || '') + '.' + (payload.dnsDomain || '')
-                    },
-                    lookup: [
-                        { className: 'cmdb_ci_server', values: { host_name: payload.hostName || '', dns_domain: payload.dnsDomain || '' } }
-                    ]
+                    values: ciData,
+                    lookup: [{
+                        className: 'cmdb_ci_server',
+                        values: {
+                            host_name: ciData.host_name,
+                            dns_domain: ciData.dns_domain
+                        }
+                    }]
                 }]
             };
 
             var jsonInput = JSON.stringify(input);
+            gs.info('CanopiServerProcessor: Invoking IRE for staging ' + stagingSysId);
+
             var output = sn_cmdb.IdentificationEngine.createOrUpdateCI('CANOPI', jsonInput);
 
             if (output) {
                 var result = JSON.parse(output);
                 if (result.items && result.items.length > 0) {
                     var item = result.items[0];
-                    var ciSysId = item.sysId || '';
-                    var ciClassName = item.className || 'cmdb_ci_server';
-                    var operation = item.operation || 'unknown';
-
-                    this._updateStaging(stg, 'processed', ciClassName, ciSysId,
-                        'CI ' + operation + ' successfully. Record ID: ' + ciSysId, '200');
-
                     return {
-                        status: 'success',
-                        operation: operation,
-                        ci_sys_id: ciSysId,
-                        ci_class: ciClassName
+                        sysId: item.sysId || '',
+                        className: item.className || 'cmdb_ci_server',
+                        operation: item.operation || 'unknown'
                     };
                 }
             }
 
-            this._updateStaging(stg, 'failed', '', '', 'IRE returned no results', '500');
+            gs.error('CanopiServerProcessor: IRE returned empty result for staging ' + stagingSysId);
             return null;
 
         } catch (e) {
-            gs.error('CanopiServerProcessor IRE error: ' + e);
-            this._updateStaging(stg, 'failed', '', '', 'IRE processing error: ' + e, '500');
+            gs.error('CanopiServerProcessor: IRE error for staging ' + stagingSysId + ': ' + e);
             return null;
         }
     },

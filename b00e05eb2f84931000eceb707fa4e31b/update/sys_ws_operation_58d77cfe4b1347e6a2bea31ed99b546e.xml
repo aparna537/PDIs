@@ -10,16 +10,17 @@
     <enforce_acl>cf9d01d3e73003009d6247e603f6a990</enforce_acl>
     <http_method>POST</http_method>
     <name>Ingest Payload</name>
-    <operation_script><![CDATA[(function process(/*RESTAPIRequest*/ request, /*RESTAPIResponse*/ response) {
+    <operation_script><![CDATA[
+(function process(/*RESTAPIRequest*/ request, /*RESTAPIResponse*/ response) {
     var STAGING_TABLE = 'x_2226556_server_0_canopi_stg';
     var stagingSysId = '';
 
     try {
         var bodyStr = request.body.dataString;
 
-        // -------------------------------------------------------
-        // STEP 1 – Insert the raw payload into the staging table
-        // -------------------------------------------------------
+        // ───────────────────────────────────────────────────────────
+        // STEP 1 – Insert raw payload into staging table
+        // ───────────────────────────────────────────────────────────
         var gr = new GlideRecord(STAGING_TABLE);
         gr.initialize();
         gr.setValue('payload', bodyStr || '');
@@ -29,32 +30,23 @@
 
         if (!stagingSysId) {
             response.setStatus(500);
-            response.setBody({
-                status: 'error',
-                message: 'Failed to create staging record'
-            });
+            response.setBody({ status: 'error', message: 'Failed to create staging record' });
             return;
         }
 
-        // Re-open the record so we can update it after validation
         var stg = new GlideRecord(STAGING_TABLE);
         stg.get(stagingSysId);
 
-        // -------------------------------------------------------
-        // STEP 2 – Validate payload is not empty & structure
-        // -------------------------------------------------------
+        // ───────────────────────────────────────────────────────────
+        // STEP 2 – Validate payload: empty / JSON / structure
+        // ───────────────────────────────────────────────────────────
         if (!bodyStr) {
             stg.setValue('state', 'failed');
             stg.setValue('error_message', 'Payload is empty');
             stg.setValue('http_response_code', '400');
             stg.update();
-
             response.setStatus(400);
-            response.setBody({
-                status: 'failed',
-                staging_sys_id: String(stagingSysId),
-                message: 'Payload is empty'
-            });
+            response.setBody({ status: 'failed', staging_sys_id: String(stagingSysId), message: 'Payload is empty' });
             return;
         }
 
@@ -66,17 +58,11 @@
             stg.setValue('error_message', 'Payload is not valid JSON: ' + parseErr);
             stg.setValue('http_response_code', '400');
             stg.update();
-
             response.setStatus(400);
-            response.setBody({
-                status: 'failed',
-                staging_sys_id: String(stagingSysId),
-                message: 'Payload is not valid JSON'
-            });
+            response.setBody({ status: 'failed', staging_sys_id: String(stagingSysId), message: 'Payload is not valid JSON' });
             return;
         }
 
-        // Validate top-level structure
         var structureErrors = [];
         var expectedTopKeys = ['sourceSystem', 'serialNumber', 'hostName', 'dnsDomain', 'orderId', 'action', 'device', 'location', 'support'];
         for (var i = 0; i < expectedTopKeys.length; i++) {
@@ -84,144 +70,111 @@
                 structureErrors.push('Missing top-level field: ' + expectedTopKeys[i]);
             }
         }
-
-        if (payload.device && typeof payload.device !== 'object') {
-            structureErrors.push('Field "device" must be an object');
-        }
-        if (payload.location && typeof payload.location !== 'object') {
-            structureErrors.push('Field "location" must be an object');
-        }
-        if (payload.support && typeof payload.support !== 'object') {
-            structureErrors.push('Field "support" must be an object');
-        }
+        if (payload.device && typeof payload.device !== 'object') structureErrors.push('Field "device" must be an object');
+        if (payload.location && typeof payload.location !== 'object') structureErrors.push('Field "location" must be an object');
+        if (payload.support && typeof payload.support !== 'object') structureErrors.push('Field "support" must be an object');
 
         if (structureErrors.length > 0) {
             stg.setValue('state', 'failed');
             stg.setValue('error_message', 'Payload structure errors: ' + structureErrors.join('; '));
             stg.setValue('http_response_code', '400');
             stg.update();
-
             response.setStatus(400);
-            response.setBody({
-                status: 'failed',
-                staging_sys_id: String(stagingSysId),
-                message: 'Payload structure validation failed',
-                errors: structureErrors
-            });
+            response.setBody({ status: 'failed', staging_sys_id: String(stagingSysId), message: 'Payload structure validation failed', errors: structureErrors });
             return;
         }
 
-        // Populate staging fields from payload
         stg.setValue('source_system', payload.sourceSystem || '');
         stg.setValue('external_id', payload.orderId || '');
         stg.setValue('action', String(payload.action || '').toLowerCase());
         stg.setValue('correlation_id', payload.orderId || '');
 
-        // -------------------------------------------------------
+        // ───────────────────────────────────────────────────────────
         // STEP 3 – Validate critical fields: managedBy, selfSupport, clli
-        // -------------------------------------------------------
+        // ───────────────────────────────────────────────────────────
         var criticalEmpty = [];
         var support = payload.support || {};
         var location = payload.location || {};
 
-        if (!support.managedBy || String(support.managedBy).trim() === '') {
-            criticalEmpty.push('support.managedBy');
-        }
-        if (!support.selfSupport || String(support.selfSupport).trim() === '') {
-            criticalEmpty.push('support.selfSupport');
-        }
-        if (!location.clli || String(location.clli).trim() === '') {
-            criticalEmpty.push('location.clli');
-        }
+        if (!support.managedBy || String(support.managedBy).trim() === '') criticalEmpty.push('support.managedBy');
+        if (!support.selfSupport || String(support.selfSupport).trim() === '') criticalEmpty.push('support.selfSupport');
+        if (!location.clli || String(location.clli).trim() === '') criticalEmpty.push('location.clli');
 
         if (criticalEmpty.length > 0) {
             stg.setValue('state', 'failed');
             stg.setValue('error_message', 'Critical fields are empty: ' + criticalEmpty.join(', '));
             stg.setValue('http_response_code', '400');
             stg.update();
-
             response.setStatus(400);
-            response.setBody({
-                status: 'failed',
-                staging_sys_id: String(stagingSysId),
-                message: 'Critical field validation failed. The following fields are empty',
-                empty_fields: criticalEmpty
-            });
+            response.setBody({ status: 'failed', staging_sys_id: String(stagingSysId), message: 'Critical field validation failed. The following fields are empty', empty_fields: criticalEmpty });
             return;
         }
 
-        // -------------------------------------------------------
-        // STEP 4 – Validate required fields are not empty
-        // -------------------------------------------------------
+        // ───────────────────────────────────────────────────────────
+        // STEP 4 – Validate required fields
+        // ───────────────────────────────────────────────────────────
         var device = payload.device || {};
         var missingFields = [];
 
-        if (!payload.sourceSystem || String(payload.sourceSystem).trim() === '') {
-            missingFields.push('sourceSystem');
-        }
-        if (!payload.hostName || String(payload.hostName).trim() === '') {
-            missingFields.push('hostName');
-        }
-        if (!payload.dnsDomain || String(payload.dnsDomain).trim() === '') {
-            missingFields.push('dnsDomain');
-        }
-        if (device.slot === undefined || device.slot === null || String(device.slot).trim() === '') {
-            missingFields.push('device.slot');
-        }
-        if (!location.room || String(location.room).trim() === '') {
-            missingFields.push('location.room');
-        }
-        if (!location.grid || String(location.grid).trim() === '') {
-            missingFields.push('location.grid');
-        }
-        if (location.floor === undefined || location.floor === null || String(location.floor).trim() === '') {
-            missingFields.push('location.floor');
-        }
-        if (!support.primarySA || String(support.primarySA).trim() === '') {
-            missingFields.push('support.primarySA');
-        }
-        if (!support.backUpSA || String(support.backUpSA).trim() === '') {
-            missingFields.push('support.backUpSA');
-        }
-        if (!support.SupportGroup || String(support.SupportGroup).trim() === '') {
-            missingFields.push('support.SupportGroup');
-        }
+        if (!payload.sourceSystem || String(payload.sourceSystem).trim() === '') missingFields.push('sourceSystem');
+        if (!payload.hostName || String(payload.hostName).trim() === '') missingFields.push('hostName');
+        if (!payload.dnsDomain || String(payload.dnsDomain).trim() === '') missingFields.push('dnsDomain');
+        if (device.slot === undefined || device.slot === null || String(device.slot).trim() === '') missingFields.push('device.slot');
+        if (!location.room || String(location.room).trim() === '') missingFields.push('location.room');
+        if (!location.grid || String(location.grid).trim() === '') missingFields.push('location.grid');
+        if (location.floor === undefined || location.floor === null || String(location.floor).trim() === '') missingFields.push('location.floor');
+        if (!support.primarySA || String(support.primarySA).trim() === '') missingFields.push('support.primarySA');
+        if (!support.backUpSA || String(support.backUpSA).trim() === '') missingFields.push('support.backUpSA');
+        if (!support.SupportGroup || String(support.SupportGroup).trim() === '') missingFields.push('support.SupportGroup');
 
         if (missingFields.length > 0) {
             stg.setValue('state', 'failed');
             stg.setValue('error_message', 'Required fields are missing or empty: ' + missingFields.join(', '));
             stg.setValue('http_response_code', '400');
             stg.update();
-
             response.setStatus(400);
-            response.setBody({
-                status: 'failed',
-                staging_sys_id: String(stagingSysId),
-                message: 'Required field validation failed. The following field values are missing',
-                missing_fields: missingFields
-            });
+            response.setBody({ status: 'failed', staging_sys_id: String(stagingSysId), message: 'Required field validation failed. The following field values are missing', missing_fields: missingFields });
             return;
         }
 
-        // -------------------------------------------------------
-        // STEP 5 – All validations passed
-        // -------------------------------------------------------
+        // ───────────────────────────────────────────────────────────
+        // STEP 5 – Validation passed → Process through ETL + IRE
+        // Invokes CanopiServerProcessor which:
+        //   a) Applies IntegrationHub ETL field mappings
+        //   b) Calls sn_cmdb.IdentificationEngine.createOrUpdateCI()
+        //   c) IRE checks Identification rules (host_name + dns_domain)
+        //   d) IRE applies Reconciliation rules (data source priority)
+        //   e) Creates or updates CI in cmdb_ci_server
+        //   f) Updates staging record with target_table, target_record, state
+        // ───────────────────────────────────────────────────────────
         stg.setValue('state', 'pending');
-        stg.setValue('http_response_code', '202');
-        stg.setValue('response_message', 'Request acknowledged. Server ingestion status will be rolled back.');
         stg.update();
 
-        response.setStatus(202);
-        response.setBody({
-            status: 'acknowledged',
-            staging_sys_id: String(stagingSysId),
-            message: 'Request acknowledged. We will rollback the response of server ingestion status.'
-        });
+        var processor = new x_2226556_server_0.CanopiServerProcessor();
+        var result = processor.processRecord(String(stagingSysId));
+
+        if (result && result.status === 'success') {
+            response.setStatus(200);
+            response.setBody({
+                status: 'success',
+                staging_sys_id: String(stagingSysId),
+                operation: result.operation,
+                ci_sys_id: result.ci_sys_id,
+                ci_class: result.ci_class,
+                message: 'Record ' + result.operation + ' successfully. CI Record ID: ' + result.ci_sys_id
+            });
+        } else {
+            response.setStatus(500);
+            response.setBody({
+                status: 'failed',
+                staging_sys_id: String(stagingSysId),
+                message: result ? result.message : 'ETL/IRE processing failed'
+            });
+        }
 
     } catch (e) {
         gs.error('CANOPI ingest handler error: ' + e);
 
-        // Update staging record to failed if it was created
         if (stagingSysId) {
             var errGr = new GlideRecord(STAGING_TABLE);
             if (errGr.get(stagingSysId)) {
@@ -249,7 +202,7 @@
     <requires_acl_authorization>true</requires_acl_authorization>
     <requires_authentication>true</requires_authentication>
     <requires_snc_internal_role>true</requires_snc_internal_role>
-    <short_description>Receives a CANOPI server JSON payload, stages it, validates it, and returns stat</short_description>
+    <short_description>Receives CANOPI server JSON payload, validates, processes through ETL/IRE, returns CI result</short_description>
     <sys_policy/>
     <web_service_definition>df6c273f600c4bb5b9b7bfa8073053d1</web_service_definition>
     <web_service_version/>

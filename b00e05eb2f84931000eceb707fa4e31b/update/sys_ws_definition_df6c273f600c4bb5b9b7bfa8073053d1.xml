@@ -16,7 +16,7 @@
     <produces>application/json</produces>
     <produces_customized>true</produces_customized>
     <service_id>canopi_server_ingest</service_id>
-    <short_description>Accepts CANOPI server inventory JSON payloads for staging and validation</short_description>
+    <short_description>Accepts CANOPI server inventory JSON payloads, validates, processes through ETL and IRE, and returns CI result</short_description>
     <sys_policy/>
   </sys_ws_definition>
 </record_update>
