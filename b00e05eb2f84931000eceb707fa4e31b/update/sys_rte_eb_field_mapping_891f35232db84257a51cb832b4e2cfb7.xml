@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_rte_eb_field_mapping">
+  <sys_rte_eb_field_mapping action="INSERT_OR_UPDATE" apply_defaults="true">
+    <sys_id>891f35232db84257a51cb832b4e2cfb7</sys_id>
+    <sys_scope display_value="x_2226556_server_0">b00e05eb2f84931000eceb707fa4e31b</sys_scope>
+    <sys_update_name>sys_rte_eb_field_mapping_891f35232db84257a51cb832b4e2cfb7</sys_update_name>
+    <order>800</order>
+    <source_sys_rte_eb_field>eb4980744dfa452abe841f11ea4d4ed4</source_sys_rte_eb_field>
+    <sys_rte_eb_definition>33e92b464a0b4ab8835598394a99c24c</sys_rte_eb_definition>
+    <sys_rte_eb_entity_mapping>8b8defbcab2841c888f03c330324425a</sys_rte_eb_entity_mapping>
+    <target_sys_rte_eb_field>65febce133aa47e38f8e61353234b237</target_sys_rte_eb_field>
+  </sys_rte_eb_field_mapping>
+</record_update>

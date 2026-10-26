@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+  <sys_script_include action="INSERT_OR_UPDATE" apply_defaults="true">
+    <sys_id>f7578802ebec40c2985898ca1953b097</sys_id>
+    <sys_scope display_value="x_2226556_server_0">b00e05eb2f84931000eceb707fa4e31b</sys_scope>
+    <sys_update_name>sys_script_include_f7578802ebec40c2985898ca1953b097</sys_update_name>
+    <access>package_private</access>
+    <active>true</active>
+    <api_name>x_2226556_server_0.CanopiServerProcessor</api_name>
+    <caller_access/>
+    <client_callable>false</client_callable>
+    <description>Processes CANOPI staging records through IRE to create/update cmdb_ci_server CIs</description>
+    <mobile_callable>false</mobile_callable>
+    <name>CanopiServerProcessor</name>
+    <sandbox_callable>false</sandbox_callable>
+    <script><![CDATA[var CanopiServerProcessor = Class.create()
+CanopiServerProcessor.prototype = {
+    initialize: function() {},
+
+    processRecord: function(stagingSysId) {
+        var stg = new GlideRecord('x_2226556_server_0_canopi_stg');
+        if (!stg.get(stagingSysId)) {
+            gs.error('CanopiServerProcessor: Staging record not found: ' + stagingSysId);
+            return null;
+        }
+
+        var payloadStr = stg.getValue('payload');
+        if (!payloadStr) {
+            this._updateStaging(stg, 'failed', '', '', 'Payload is empty', '400');
+            return null;
+        }
+
+        var payload;
+        try {
+            payload = JSON.parse(payloadStr);
+        } catch (e) {
+            this._updateStaging(stg, 'failed', '', '', 'Invalid JSON payload: ' + e, '400');
+            return null;
+        }
+
+        // Build the IRE payload using CMDB API
+        try {
+            var input = {
+                items: [{
+                    className: 'cmdb_ci_server',
+                    values: {
+                        name: payload.hostName || '',
+                        host_name: payload.hostName || '',
+                        dns_domain: payload.dnsDomain || '',
+                        serial_number: payload.serialNumber || '',
+                        short_description: payload.device ? payload.device.description || '' : '',
+                        environment: payload.device ? payload.device.environment || '' : '',
+                        used_for: payload.device ? payload.device.used_for || '' : '',
+                        correlation_id: payload.orderId || '',
+                        discovery_source: 'CANOPI',
+                        fqdn: (payload.hostName || '') + '.' + (payload.dnsDomain || '')
+                    },
+                    lookup: [
+                        { className: 'cmdb_ci_server', values: { host_name: payload.hostName || '', dns_domain: payload.dnsDomain || '' } }
+                    ]
+                }]
+            };
+
+            var jsonInput = JSON.stringify(input);
+            var output = sn_cmdb.IdentificationEngine.createOrUpdateCI('CANOPI', jsonInput);
+
+            if (output) {
+                var result = JSON.parse(output);
+                if (result.items && result.items.length > 0) {
+                    var item = result.items[0];
+                    var ciSysId = item.sysId || '';
+                    var ciClassName = item.className || 'cmdb_ci_server';
+                    var operation = item.operation || 'unknown';
+
+                    this._updateStaging(stg, 'processed', ciClassName, ciSysId,
+                        'CI ' + operation + ' successfully. Record ID: ' + ciSysId, '200');
+
+                    return {
+                        status: 'success',
+                        operation: operation,
+                        ci_sys_id: ciSysId,
+                        ci_class: ciClassName
+                    };
+                }
+            }
+
+            this._updateStaging(stg, 'failed', '', '', 'IRE returned no results', '500');
+            return null;
+
+        } catch (e) {
+            gs.error('CanopiServerProcessor IRE error: ' + e);
+            this._updateStaging(stg, 'failed', '', '', 'IRE processing error: ' + e, '500');
+            return null;
+        }
+    },
+
+    _updateStaging: function(stg, state, targetTable, targetRecord, message, httpCode) {
+        stg.setValue('state', state);
+        if (targetTable) stg.setValue('target_table', targetTable);
+        if (targetRecord) stg.setValue('target_record', targetRecord);
+        stg.setValue('response_message', message);
+        stg.setValue('http_response_code', httpCode);
+        stg.update();
+    },
+
+    type: 'CanopiServerProcessor'
+}
+]]></script>
+    <sys_name>CanopiServerProcessor</sys_name>
+  </sys_script_include>
+</record_update>

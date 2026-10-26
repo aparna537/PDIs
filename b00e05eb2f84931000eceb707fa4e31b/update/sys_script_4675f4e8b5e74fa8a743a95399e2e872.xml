@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script">
+  <sys_script action="INSERT_OR_UPDATE" apply_defaults="true">
+    <sys_id>4675f4e8b5e74fa8a743a95399e2e872</sys_id>
+    <sys_scope display_value="x_2226556_server_0">b00e05eb2f84931000eceb707fa4e31b</sys_scope>
+    <sys_update_name>sys_script_4675f4e8b5e74fa8a743a95399e2e872</sys_update_name>
+    <abort_action>false</abort_action>
+    <access>package_private</access>
+    <action_delete>false</action_delete>
+    <action_insert>true</action_insert>
+    <action_query>false</action_query>
+    <action_update>true</action_update>
+    <active>true</active>
+    <add_message>false</add_message>
+    <advanced>true</advanced>
+    <change_fields>false</change_fields>
+    <client_callable>false</client_callable>
+    <collection>x_2226556_server_0_canopi_stg</collection>
+    <condition/>
+    <description>Triggers CMDB IRE processing for validated CANOPI staging records</description>
+    <execute_function>false</execute_function>
+    <filter_condition>state=pending</filter_condition>
+    <is_rest>false</is_rest>
+    <message/>
+    <name>Process CANOPI Staging Record</name>
+    <order>200</order>
+    <priority>100</priority>
+    <rest_method/>
+    <rest_method_text/>
+    <rest_service/>
+    <rest_service_text/>
+    <rest_variables/>
+    <role_conditions/>
+    <script><![CDATA[var processor = new x_2226556_server_0.CanopiServerProcessor();
+var result = processor.processRecord(current.getUniqueValue());
+
+if (result) {
+    gs.info('CANOPI staging record ' + current.getUniqueValue() + ' processed: ' + result.operation + ' CI ' + result.ci_sys_id);
+} else {
+    gs.warn('CANOPI staging record ' + current.getUniqueValue() + ' processing failed');
+}
+]]></script>
+    <sys_name>Process CANOPI Staging Record</sys_name>
+    <sys_policy/>
+    <template/>
+    <when>async_always</when>
+  </sys_script>
+</record_update>

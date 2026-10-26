@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_rte_eb_definition">
+  <sys_rte_eb_definition action="INSERT_OR_UPDATE" apply_defaults="true">
+    <sys_id>33e92b464a0b4ab8835598394a99c24c</sys_id>
+    <sys_scope display_value="x_2226556_server_0">b00e05eb2f84931000eceb707fa4e31b</sys_scope>
+    <sys_update_name>sys_rte_eb_definition_33e92b464a0b4ab8835598394a99c24c</sys_update_name>
+    <active>true</active>
+    <description>Transforms CANOPI staging data to cmdb_ci_server via IRE</description>
+    <name>CANOPI Server Transform</name>
+  </sys_rte_eb_definition>
+</record_update>

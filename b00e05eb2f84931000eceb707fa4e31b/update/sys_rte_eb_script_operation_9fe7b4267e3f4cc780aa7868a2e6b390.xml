@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_rte_eb_script_operation">
+  <sys_rte_eb_script_operation action="INSERT_OR_UPDATE" apply_defaults="true">
+    <sys_id>9fe7b4267e3f4cc780aa7868a2e6b390</sys_id>
+    <sys_scope display_value="x_2226556_server_0">b00e05eb2f84931000eceb707fa4e31b</sys_scope>
+    <sys_update_name>sys_rte_eb_script_operation_9fe7b4267e3f4cc780aa7868a2e6b390</sys_update_name>
+    <conditional_script>answer = true;</conditional_script>
+    <name>Extract environment from payload</name>
+    <order>600</order>
+    <script>var p = JSON.parse(source.payload); answer = p.device ? p.device.environment || '' : '';</script>
+    <source_sys_rte_eb_field>eb4980744dfa452abe841f11ea4d4ed4</source_sys_rte_eb_field>
+    <sys_rte_eb_definition>33e92b464a0b4ab8835598394a99c24c</sys_rte_eb_definition>
+    <sys_rte_eb_entity>faa6e469601e493693b46fc1861e74ed</sys_rte_eb_entity>
+    <target_sys_rte_eb_field>9b0977b471324c108d0aa46d4d14a057</target_sys_rte_eb_field>
+    <type>941f88e273b333002b6265a751ab9e84</type>
+  </sys_rte_eb_script_operation>
+</record_update>
