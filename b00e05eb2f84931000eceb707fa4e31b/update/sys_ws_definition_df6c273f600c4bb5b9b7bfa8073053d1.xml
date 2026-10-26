@@ -5,7 +5,7 @@
     <sys_update_name>sys_ws_definition_df6c273f600c4bb5b9b7bfa8073053d1</sys_update_name>
     <active>true</active>
     <base_uri>/api/x_2226556_server_0/canopi_server_ingest</base_uri>
-    <consumes>application/xml</consumes>
+    <consumes>application/json</consumes>
     <consumes_customized>true</consumes_customized>
     <default_version>No active default version</default_version>
     <doc_link/>
@@ -16,7 +16,7 @@
     <produces>application/json</produces>
     <produces_customized>true</produces_customized>
     <service_id>canopi_server_ingest</service_id>
-    <short_description>Accepts CANOPI server inventory XML payloads for staging</short_description>
+    <short_description>Accepts CANOPI server inventory JSON payloads for staging and validation</short_description>
     <sys_policy/>
   </sys_ws_definition>
 </record_update>
