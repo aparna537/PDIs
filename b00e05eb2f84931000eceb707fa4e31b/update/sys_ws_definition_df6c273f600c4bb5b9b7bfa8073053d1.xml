@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ws_definition">
+  <sys_ws_definition action="INSERT_OR_UPDATE" apply_defaults="true">
+    <sys_id>df6c273f600c4bb5b9b7bfa8073053d1</sys_id>
+    <sys_scope display_value="x_2226556_server_0">b00e05eb2f84931000eceb707fa4e31b</sys_scope>
+    <sys_update_name>sys_ws_definition_df6c273f600c4bb5b9b7bfa8073053d1</sys_update_name>
+    <active>true</active>
+    <base_uri>/api/x_2226556_server_0/canopi_server_ingest</base_uri>
+    <consumes>application/xml</consumes>
+    <consumes_customized>true</consumes_customized>
+    <default_version>No active default version</default_version>
+    <doc_link/>
+    <enforce_acl>cf9d01d3e73003009d6247e603f6a990</enforce_acl>
+    <is_versioned>false</is_versioned>
+    <name>CANOPI Server Ingest</name>
+    <namespace>x_2226556_server_0</namespace>
+    <produces>application/json</produces>
+    <produces_customized>true</produces_customized>
+    <service_id>canopi_server_ingest</service_id>
+    <short_description>Accepts CANOPI server inventory XML payloads for staging</short_description>
+    <sys_policy/>
+  </sys_ws_definition>
+</record_update>

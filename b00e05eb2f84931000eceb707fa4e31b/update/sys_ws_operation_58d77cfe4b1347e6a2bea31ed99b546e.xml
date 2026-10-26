@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ws_operation">
+  <sys_ws_operation action="INSERT_OR_UPDATE" apply_defaults="true">
+    <sys_id>58d77cfe4b1347e6a2bea31ed99b546e</sys_id>
+    <sys_scope display_value="x_2226556_server_0">b00e05eb2f84931000eceb707fa4e31b</sys_scope>
+    <sys_update_name>sys_ws_operation_58d77cfe4b1347e6a2bea31ed99b546e</sys_update_name>
+    <active>true</active>
+    <consumes>application/xml</consumes>
+    <consumes_customized>false</consumes_customized>
+    <default_operation_uri>/api/x_2226556_server_0/canopi_server_ingest/ingest</default_operation_uri>
+    <enforce_acl>cf9d01d3e73003009d6247e603f6a990</enforce_acl>
+    <http_method>POST</http_method>
+    <name>Ingest Payload</name>
+    <operation_script><![CDATA[
+(function process(/*RESTAPIRequest*/ request, /*RESTAPIResponse*/ response) {
+    try {
+        var body = request.body.dataString;
+
+        if (!body) {
+            response.setStatus(400);
+            response.setBody({
+                status: 'error',
+                message: 'Request body is empty'
+            });
+            return;
+        }
+
+        var gr = new GlideRecord('x_2226556_server_0_canopi_stg');
+        gr.initialize();
+        gr.setValue('payload', body);
+        gr.setValue('source_system', 'CANOPI');
+        gr.setValue('http_response_code', '202');
+        var sysId = gr.insert();
+
+        if (sysId) {
+            response.setStatus(202);
+            response.setBody({
+                status: 'accepted',
+                staging_sys_id: String(sysId),
+                message: 'Payload accepted for processing'
+            });
+        } else {
+            response.setStatus(500);
+            response.setBody({
+                status: 'error',
+                message: 'Failed to create staging record'
+            });
+        }
+    } catch (e) {
+        gs.error('CANOPI ingest handler error: ' + e);
+        response.setStatus(500);
+        response.setBody({
+            status: 'error',
+            message: 'Internal server error during payload ingestion'
+        });
+    }
+})(request, response);
+]]></operation_script>
+    <operation_uri>/api/x_2226556_server_0/canopi_server_ingest/ingest</operation_uri>
+    <produces>application/json</produces>
+    <produces_customized>false</produces_customized>
+    <relative_path>/ingest</relative_path>
+    <request_example/>
+    <requires_acl_authorization>true</requires_acl_authorization>
+    <requires_authentication>true</requires_authentication>
+    <requires_snc_internal_role>true</requires_snc_internal_role>
+    <short_description>Receives a CANOPI server XML payload and creates a staging record</short_description>
+    <sys_policy/>
+    <web_service_definition>df6c273f600c4bb5b9b7bfa8073053d1</web_service_definition>
+    <web_service_version/>
+  </sys_ws_operation>
+</record_update>
