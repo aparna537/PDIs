@@ -10,8 +10,7 @@
     <enforce_acl>cf9d01d3e73003009d6247e603f6a990</enforce_acl>
     <http_method>POST</http_method>
     <name>Ingest Payload</name>
-    <operation_script><![CDATA[
-(function process(/*RESTAPIRequest*/ request, /*RESTAPIResponse*/ response) {
+    <operation_script><![CDATA[(function process(/*RESTAPIRequest*/ request, /*RESTAPIResponse*/ response) {
     var STAGING_TABLE = 'x_2226556_server_0_canopi_stg';
     var stagingSysId = '';
 
@@ -41,7 +40,7 @@
         // STEP 2 – Validate payload: empty / JSON / structure
         // ───────────────────────────────────────────────────────────
         if (!bodyStr) {
-            stg.setValue('state', 'failed');
+            stg.setValue('sys_import_state', 'error');
             stg.setValue('error_message', 'Payload is empty');
             stg.setValue('http_response_code', '400');
             stg.update();
@@ -54,7 +53,9 @@
         try {
             payload = JSON.parse(bodyStr);
         } catch (parseErr) {
-            stg.setValue('state', 'failed');
+
+
+            stg.setValue('sys_import_state', 'error');
             stg.setValue('error_message', 'Payload is not valid JSON: ' + parseErr);
             stg.setValue('http_response_code', '400');
             stg.update();
@@ -75,7 +76,7 @@
         if (payload.support && typeof payload.support !== 'object') structureErrors.push('Field "support" must be an object');
 
         if (structureErrors.length > 0) {
-            stg.setValue('state', 'failed');
+            stg.setValue('sys_import_state', 'error');
             stg.setValue('error_message', 'Payload structure errors: ' + structureErrors.join('; '));
             stg.setValue('http_response_code', '400');
             stg.update();
@@ -101,7 +102,7 @@
         if (!location.clli || String(location.clli).trim() === '') criticalEmpty.push('location.clli');
 
         if (criticalEmpty.length > 0) {
-            stg.setValue('state', 'failed');
+            stg.setValue('sys_import_state', 'error');
             stg.setValue('error_message', 'Critical fields are empty: ' + criticalEmpty.join(', '));
             stg.setValue('http_response_code', '400');
             stg.update();
@@ -128,7 +129,7 @@
         if (!support.SupportGroup || String(support.SupportGroup).trim() === '') missingFields.push('support.SupportGroup');
 
         if (missingFields.length > 0) {
-            stg.setValue('state', 'failed');
+            stg.setValue('sys_import_state', 'error');
             stg.setValue('error_message', 'Required fields are missing or empty: ' + missingFields.join(', '));
             stg.setValue('http_response_code', '400');
             stg.update();
@@ -144,7 +145,7 @@
         // The staging record will be updated with the CI result
         // (target_table, target_record, state=processed).
         // ───────────────────────────────────────────────────────────
-        stg.setValue('state', 'pending');
+        stg.setValue('sys_import_state', 'pending');
         stg.setValue('http_response_code', '202');
         stg.setValue('response_message', 'Request acknowledged. Server ingestion status will be rolled back.');
         stg.update();
@@ -162,7 +163,7 @@
         if (stagingSysId) {
             var errGr = new GlideRecord(STAGING_TABLE);
             if (errGr.get(stagingSysId)) {
-                errGr.setValue('state', 'failed');
+                errGr.setValue('sys_import_state', 'error');
                 errGr.setValue('error_message', 'Unexpected error: ' + e);
                 errGr.setValue('http_response_code', '500');
                 errGr.update();
@@ -186,7 +187,7 @@
     <requires_acl_authorization>true</requires_acl_authorization>
     <requires_authentication>true</requires_authentication>
     <requires_snc_internal_role>true</requires_snc_internal_role>
-    <short_description>Receives CANOPI server JSON payload, stages it, validates it, returns acknowledgment</short_description>
+    <short_description>Receives CANOPI server JSON payload, stages it, validates it, returns acknowledg</short_description>
     <sys_policy/>
     <web_service_definition>df6c273f600c4bb5b9b7bfa8073053d1</web_service_definition>
     <web_service_version/>

@@ -6,7 +6,7 @@
     <abort_action>false</abort_action>
     <access>package_private</access>
     <action_delete>false</action_delete>
-    <action_insert>true</action_insert>
+    <action_insert>false</action_insert>
     <action_query>false</action_query>
     <action_update>true</action_update>
     <active>true</active>
@@ -18,7 +18,7 @@
     <condition/>
     <description>Triggers CMDB IRE processing for validated CANOPI staging records</description>
     <execute_function>false</execute_function>
-    <filter_condition>state=pending</filter_condition>
+    <filter_condition>sys_import_state=pending</filter_condition>
     <is_rest>false</is_rest>
     <message/>
     <name>Process CANOPI Staging Record</name>

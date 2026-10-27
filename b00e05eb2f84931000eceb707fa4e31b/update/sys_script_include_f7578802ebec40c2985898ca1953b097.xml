@@ -36,7 +36,7 @@ CanopiServerProcessor.prototype = {
 
         var payloadStr = stg.getValue('payload');
         if (!payloadStr) {
-            this._updateStaging(stg, 'failed', '', '', 'Payload is empty', '400');
+            this._updateStaging(stg, 'error', '', '', 'Payload is empty', '400');
             return { status: 'error', message: 'Payload is empty' };
         }
 
@@ -44,7 +44,7 @@ CanopiServerProcessor.prototype = {
         try {
             payload = JSON.parse(payloadStr);
         } catch (e) {
-            this._updateStaging(stg, 'failed', '', '', 'Invalid JSON payload: ' + e, '400');
+            this._updateStaging(stg, 'error', '', '', 'Invalid JSON payload: ' + e, '400');
             return { status: 'error', message: 'Invalid JSON payload' };
         }
 
@@ -58,7 +58,7 @@ CanopiServerProcessor.prototype = {
         // Builds the IRE input payload and calls IdentificationEngine
         var ireResult = this._invokeIRE(ciData, stagingSysId);
         if (!ireResult) {
-            this._updateStaging(stg, 'failed', '', '', 'IRE processing returned no result', '500');
+            this._updateStaging(stg, 'error', '', '', 'IRE processing returned no result', '500');
             return { status: 'error', message: 'IRE processing failed' };
         }
 
@@ -154,7 +154,7 @@ CanopiServerProcessor.prototype = {
     },
 
     _updateStaging: function(stg, state, targetTable, targetRecord, message, httpCode) {
-        stg.setValue('state', state);
+        stg.setValue('sys_import_state', state);
         if (targetTable) stg.setValue('target_table', targetTable);
         if (targetRecord) stg.setValue('target_record', targetRecord);
         stg.setValue('response_message', message);

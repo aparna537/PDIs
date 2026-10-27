@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+  <sys_ui_section caption="Response" section_id="2da5c006c5a4471296e4d6825bb50b89" sys_domain="global" table="x_2226556_server_0_canopi_stg" view="">
+    <sys_ui_element action="INSERT_OR_UPDATE" apply_defaults="true">
+      <element>response_message</element>
+      <position>0</position>
+      <sys_id>557b0e5f67244124a313dc4e6565a138</sys_id>
+      <sys_ui_formatter/>
+      <sys_ui_section caption="Response" display_value="Response" name="x_2226556_server_0_canopi_stg" sys_domain="global" view="Default view">2da5c006c5a4471296e4d6825bb50b89</sys_ui_section>
+      <sys_user/>
+      <type/>
+    </sys_ui_element>
+    <sys_ui_element action="INSERT_OR_UPDATE" apply_defaults="true">
+      <element>error_message</element>
+      <position>1</position>
+      <sys_id>07d11ce897314856b6058fbfdefe3daf</sys_id>
+      <sys_ui_formatter/>
+      <sys_ui_section caption="Response" display_value="Response" name="x_2226556_server_0_canopi_stg" sys_domain="global" view="Default view">2da5c006c5a4471296e4d6825bb50b89</sys_ui_section>
+      <sys_user/>
+      <type/>
+    </sys_ui_element>
+    <sys_ui_section action="INSERT_OR_UPDATE" apply_defaults="true">
+      <caption>Response</caption>
+      <header>false</header>
+      <name>x_2226556_server_0_canopi_stg</name>
+      <roles/>
+      <sys_domain>global</sys_domain>
+      <sys_id>2da5c006c5a4471296e4d6825bb50b89</sys_id>
+      <sys_scope display_value="x_2226556_server_0">b00e05eb2f84931000eceb707fa4e31b</sys_scope>
+      <sys_user/>
+      <title>false</title>
+      <view_name/>
+      <view display_value="Default view" name="NULL">Default view</view>
+    </sys_ui_section>
+  </sys_ui_section>
+</record_update>
