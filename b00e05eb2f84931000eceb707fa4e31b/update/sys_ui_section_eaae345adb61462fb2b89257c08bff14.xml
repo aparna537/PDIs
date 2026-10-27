@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+  <sys_ui_section caption="System Type" section_id="eaae345adb61462fb2b89257c08bff14" sys_domain="global" table="x_2226556_server_0_sys_type_val" view="">
+    <sys_ui_element action="INSERT_OR_UPDATE" apply_defaults="true">
+      <element>.begin_split</element>
+      <position>0</position>
+      <sys_id>f7a7a5a7a5044ae48e6b7dcfcceec297</sys_id>
+      <sys_ui_formatter/>
+      <sys_ui_section caption="System Type" display_value="System Type" name="x_2226556_server_0_sys_type_val" sys_domain="global" view="Default view">eaae345adb61462fb2b89257c08bff14</sys_ui_section>
+      <sys_user/>
+      <type>.begin_split</type>
+    </sys_ui_element>
+    <sys_ui_element action="INSERT_OR_UPDATE" apply_defaults="true">
+      <element>name</element>
+      <position>1</position>
+      <sys_id>4e7403ffda2544bfa3631d71432a9bc8</sys_id>
+      <sys_ui_formatter/>
+      <sys_ui_section caption="System Type" display_value="System Type" name="x_2226556_server_0_sys_type_val" sys_domain="global" view="Default view">eaae345adb61462fb2b89257c08bff14</sys_ui_section>
+      <sys_user/>
+      <type/>
+    </sys_ui_element>
+    <sys_ui_element action="INSERT_OR_UPDATE" apply_defaults="true">
+      <element>.split</element>
+      <position>2</position>
+      <sys_id>c79ec070cb2545e79b7f91bf9f01268f</sys_id>
+      <sys_ui_formatter/>
+      <sys_ui_section caption="System Type" display_value="System Type" name="x_2226556_server_0_sys_type_val" sys_domain="global" view="Default view">eaae345adb61462fb2b89257c08bff14</sys_ui_section>
+      <sys_user/>
+      <type>.split</type>
+    </sys_ui_element>
+    <sys_ui_element action="INSERT_OR_UPDATE" apply_defaults="true">
+      <element>active</element>
+      <position>3</position>
+      <sys_id>4a1b367c661a424fa56dcbffa0634a34</sys_id>
+      <sys_ui_formatter/>
+      <sys_ui_section caption="System Type" display_value="System Type" name="x_2226556_server_0_sys_type_val" sys_domain="global" view="Default view">eaae345adb61462fb2b89257c08bff14</sys_ui_section>
+      <sys_user/>
+      <type/>
+    </sys_ui_element>
+    <sys_ui_element action="INSERT_OR_UPDATE" apply_defaults="true">
+      <element>.end_split</element>
+      <position>4</position>
+      <sys_id>ebdf31c9939a48128cb85012b8640f8f</sys_id>
+      <sys_ui_formatter/>
+      <sys_ui_section caption="System Type" display_value="System Type" name="x_2226556_server_0_sys_type_val" sys_domain="global" view="Default view">eaae345adb61462fb2b89257c08bff14</sys_ui_section>
+      <sys_user/>
+      <type>.end_split</type>
+    </sys_ui_element>
+    <sys_ui_element action="INSERT_OR_UPDATE" apply_defaults="true">
+      <element>description</element>
+      <position>5</position>
+      <sys_id>c5bba652e1fd4c999bb582fe669d8ac6</sys_id>
+      <sys_ui_formatter/>
+      <sys_ui_section caption="System Type" display_value="System Type" name="x_2226556_server_0_sys_type_val" sys_domain="global" view="Default view">eaae345adb61462fb2b89257c08bff14</sys_ui_section>
+      <sys_user/>
+      <type/>
+    </sys_ui_element>
+    <sys_ui_section action="INSERT_OR_UPDATE" apply_defaults="true">
+      <caption>System Type</caption>
+      <header>false</header>
+      <name>x_2226556_server_0_sys_type_val</name>
+      <roles/>
+      <sys_domain>global</sys_domain>
+      <sys_id>eaae345adb61462fb2b89257c08bff14</sys_id>
+      <sys_scope display_value="x_2226556_server_0">b00e05eb2f84931000eceb707fa4e31b</sys_scope>
+      <sys_user/>
+      <title>false</title>
+      <view_name/>
+      <view display_value="Default view" name="NULL">Default view</view>
+    </sys_ui_section>
+  </sys_ui_section>
+</record_update>

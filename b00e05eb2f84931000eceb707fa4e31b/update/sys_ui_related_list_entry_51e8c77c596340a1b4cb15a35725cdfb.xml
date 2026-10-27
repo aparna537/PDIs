@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ui_related_list_entry">
+  <sys_ui_related_list_entry action="INSERT_OR_UPDATE" apply_defaults="true">
+    <sys_id>51e8c77c596340a1b4cb15a35725cdfb</sys_id>
+    <sys_scope display_value="x_2226556_server_0">b00e05eb2f84931000eceb707fa4e31b</sys_scope>
+    <sys_update_name>sys_ui_related_list_entry_51e8c77c596340a1b4cb15a35725cdfb</sys_update_name>
+    <list_id>02cae68a27f14a4cb021249101000d8a</list_id>
+    <position>0</position>
+    <related_list>x_2226556_server_0_server_meta.server_reference</related_list>
+  </sys_ui_related_list_entry>
+</record_update>
