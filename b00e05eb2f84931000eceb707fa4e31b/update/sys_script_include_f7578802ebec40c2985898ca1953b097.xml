@@ -8,7 +8,7 @@
     <api_name>x_2226556_server_0.CanopiServerProcessor</api_name>
     <caller_access/>
     <client_callable>false</client_callable>
-    <description>Processes CANOPI staging records through IRE to create/update cmdb_ci_server CIs</description>
+    <description>Processes CANOPI staging records through ETL mapping and IRE to create/update cmdb_ci_server CIs</description>
     <mobile_callable>false</mobile_callable>
     <name>CanopiServerProcessor</name>
     <sandbox_callable>false</sandbox_callable>
