@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_rte_eb_field">
+    <sys_rte_eb_field action="INSERT_OR_UPDATE">
+        <field>action</field>
+        <name>action</name>
+        <sys_class_name>sys_rte_eb_field</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-10-27 10:13:06</sys_created_on>
+        <sys_id>3d6ef1bb2f0c171000eceb707fa4e32e</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>action</sys_name>
+        <sys_package display_value="Server Inventory - XML" source="x_2226556_server_0">b00e05eb2f84931000eceb707fa4e31b</sys_package>
+        <sys_policy/>
+        <sys_rte_eb_definition display_value="CANOPI Server Transform">33e92b464a0b4ab8835598394a99c24c</sys_rte_eb_definition>
+        <sys_rte_eb_entity display_value="CANOPI Staging Source">182f39919aef4c1d9366c2f679ed25ce</sys_rte_eb_entity>
+        <sys_scope display_value="Server Inventory - XML">b00e05eb2f84931000eceb707fa4e31b</sys_scope>
+        <sys_update_name>sys_rte_eb_field_3d6ef1bb2f0c171000eceb707fa4e32e</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-10-27 10:13:06</sys_updated_on>
+    </sys_rte_eb_field>
+</record_update>

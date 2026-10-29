@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ws_operation">
+    <sys_ws_operation action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <consumes>application/json</consumes>
+        <consumes_customized>false</consumes_customized>
+        <default_operation_uri/>
+        <enforce_acl/>
+        <http_method>POST</http_method>
+        <name>testload</name>
+        <operation_script><![CDATA[(function process( /*RESTAPIRequest*/ request, /*RESTAPIResponse*/ response) {
+    try {
+        var body = request.body.data;
+ 
+        gs.info('Scripted rest api type of body ' + typeof body);
+        gs.info('Scripted rest api body ' + JSON.stringify(body));
+        if (!body) {
+            response.setStatus(400);
+            response.setBody({
+                error: 'Request body is required. Send a JSON object or array of server records.'
+            });
+            return;
+        }
+ 
+        //var servers = body instanceof Array ? body : [body];
+        var servers = body;
+        var insertedCount = 0;
+        var insertedIds = [];
+        var errors = [];
+        var fields = ['source_system', 'payload', 'action', 'translated_event'];
+        gs.info('Scripted rest api servers ' + JSON.stringify(servers));
+        for (var i = 0; i < servers.length; i++) {
+            var server = servers[i];
+            //var gr = new GlideRecord('x_710945_server_0_server_stg');
+            var gr = new GlideRecord('x_2226556_server_0_canopi_stg');
+            gr.initialize();
+ 
+            for (var f = 0; f < fields.length; f++) {
+                var fieldName = fields[f];
+                if (server[fieldName] !== undefined && server[fieldName] !== null) {
+                    gs.info('Scripted rest api fieldName ' + String(server[fieldName]));
+                    gr.setValue(fieldName, String(server[fieldName]));
+                }
+            }
+ 
+            var sysId = gr.insert();
+            if (sysId) {
+                insertedCount++;
+                insertedIds.push(String(sysId));
+            } else {
+                errors.push('Failed to insert record for server: ' + (server.server_name || 'unknown'));
+            }
+        }
+ 
+        response.setStatus(insertedCount > 0 ? 201 : 400);
+        response.setBody({
+            result: insertedCount > 0 ? 'success' : 'failure',
+            records_inserted: insertedCount,
+            total_submitted: servers.length,
+            inserted_sys_ids: insertedIds,
+            errors: errors
+        });
+    } catch (err) {
+        gs.info('Scripted rest api fieldName ' + err);
+    }
+ 
+ 
+})(request, response);]]></operation_script>
+        <operation_uri>/api/x_2226556_server_0/canopi_server_ingest/test</operation_uri>
+        <produces>application/json</produces>
+        <produces_customized>false</produces_customized>
+        <relative_path>/test</relative_path>
+        <request_example/>
+        <requires_acl_authorization>true</requires_acl_authorization>
+        <requires_authentication>true</requires_authentication>
+        <requires_snc_internal_role>true</requires_snc_internal_role>
+        <short_description/>
+        <support_trailing_slash>false</support_trailing_slash>
+        <sys_class_name>sys_ws_operation</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-10-28 15:34:32</sys_created_on>
+        <sys_id>e251d41c2f101b1000eceb707fa4e3e1</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>testload</sys_name>
+        <sys_package display_value="Server Inventory - XML" source="x_2226556_server_0">b00e05eb2f84931000eceb707fa4e31b</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Server Inventory - XML">b00e05eb2f84931000eceb707fa4e31b</sys_scope>
+        <sys_update_name>sys_ws_operation_e251d41c2f101b1000eceb707fa4e3e1</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-10-28 18:49:03</sys_updated_on>
+        <web_service_definition display_value="CANOPI Server Ingest">df6c273f600c4bb5b9b7bfa8073053d1</web_service_definition>
+        <web_service_version/>
+    </sys_ws_operation>
+</record_update>

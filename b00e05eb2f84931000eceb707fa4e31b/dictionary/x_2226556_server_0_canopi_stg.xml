@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element db_object_id="dd416aeeeb2b43cba1eb6bee74d5a66d" extends="sys_import_set_row" label="CANOPI Server Staging" name="x_2226556_server_0_canopi_stg" type="collection">
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=floor" label="floor" max_length="40" name="u_floor" type="string"/>
+        <element label="HTTP Response Code" name="http_response_code" type="integer"/>
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=orderId" label="orderId" max_length="40" name="u_orderid" type="string"/>
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=primarySA" label="primarySA" max_length="40" name="u_primarysa" type="string"/>
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=environment" label="environment" max_length="40" name="u_environment" type="string"/>
+        <element choice="1" label="Action" name="action" type="choice">
+            <choice>
+                <element inactive_on_update="false" label="ADD" sequence="1" value="add"/>
+                <element inactive_on_update="false" label="GO LIVE" sequence="5" value="go_live"/>
+                <element inactive_on_update="false" label="UPDATE" sequence="4" value="update"/>
+                <element inactive_on_update="false" label="DECOMMISSION" sequence="7" value="decommission"/>
+                <element inactive_on_update="false" label="CANCEL" sequence="6" value="cancel"/>
+                <element inactive_on_update="false" label="BUILD" sequence="3" value="build"/>
+                <element inactive_on_update="false" label="DELETE" sequence="2" value="delete"/>
+            </choice>
+        </element>
+        <element label="Error Message" max_length="4000" name="error_message" type="string"/>
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=usedFor" label="usedFor" max_length="40" name="u_usedfor" type="string"/>
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=slot" label="slot" max_length="40" name="u_slot" type="string"/>
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=vtkVendor" label="vtkVendor" max_length="40" name="u_vtkvendor" type="string"/>
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=managedBy" label="managedBy" max_length="40" name="u_managedby" type="string"/>
+        <element choice="1" label="Translated Event" max_length="40" name="translated_event" type="string">
+            <choice>
+                <element inactive_on_update="false" label="DECOMMISSION" sequence="5" value="decommission"/>
+                <element inactive_on_update="false" label="BUILD" sequence="1" value="build"/>
+                <element inactive_on_update="false" label="CANCEL" sequence="4" value="cancel"/>
+                <element inactive_on_update="false" label="GO LIVE" sequence="3" value="go_live"/>
+                <element inactive_on_update="false" label="UPDATE" sequence="2" value="update"/>
+            </choice>
+        </element>
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=action" label="action" max_length="40" name="u_action" type="string"/>
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=vtkDetails" label="vtkDetails" max_length="40" name="u_vtkdetails" type="string"/>
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=serialNumber" label="serialNumber" max_length="40" name="u_serialnumber" type="string"/>
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=hostName" label="hostName" max_length="40" name="u_hostname" type="string"/>
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=backUpSA" label="backUpSA" max_length="40" name="u_backupsa" type="string"/>
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=clli" label="clli" max_length="40" name="u_clli" type="string"/>
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=vtkComments" label="vtkComments" max_length="40" name="u_vtkcomments" type="string"/>
+        <element label="Response Message" max_length="255" name="response_message" type="string"/>
+        <element label="Source System" max_length="255" name="source_system" type="string"/>
+        <element label="Payload" max_length="4000" name="payload" type="string"/>
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=supportGroup" label="supportGroup" max_length="40" name="u_supportgroup" type="string"/>
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=approvalGroup" label="approvalGroup" max_length="40" name="u_approvalgroup" type="string"/>
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=dnsDomain" label="dnsDomain" max_length="40" name="u_dnsdomain" type="string"/>
+        <element label="Integration user" name="integration_user" reference="sys_user" type="reference"/>
+        <element label="External Tracking ID" max_length="255" name="external_id" type="string"/>
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=vtkIndicator" label="vtkIndicator" max_length="40" name="u_vtkindicator" type="string"/>
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=room" label="room" max_length="40" name="u_room" type="string"/>
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=grid" label="grid" max_length="40" name="u_grid" type="string"/>
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=changeGroup" label="changeGroup" max_length="40" name="u_changegroup" type="string"/>
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=sourceSystem" label="sourceSystem" max_length="40" name="u_sourcesystem" type="string"/>
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=selfSupport" label="selfSupport" max_length="40" name="u_selfsupport" type="string"/>
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=vtkVerifier" label="vtkVerifier" max_length="40" name="u_vtkverifier" type="string"/>
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=description" label="description" max_length="40" name="u_description" type="string"/>
+        <index name="index">
+            <element name="integration_user"/>
+        </index>
+    </element>
+</database>

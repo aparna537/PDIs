@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_rte_eb_etl_field">
+    <sys_rte_eb_etl_field action="INSERT_OR_UPDATE">
+        <coalesce>false</coalesce>
+        <coercion_action/>
+        <field>dns_domain</field>
+        <name>DNS Domain</name>
+        <sys_class_name>sys_rte_eb_etl_field</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-10-28 09:41:18</sys_created_on>
+        <sys_id>2e9047042f94d71000eceb707fa4e389</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>DNS Domain</sys_name>
+        <sys_package display_value="Server Inventory - XML" source="x_2226556_server_0">b00e05eb2f84931000eceb707fa4e31b</sys_package>
+        <sys_policy/>
+        <sys_rte_eb_definition display_value="Server ETL">9582dfff2fc4571000eceb707fa4e378</sys_rte_eb_definition>
+        <sys_rte_eb_entity display_value="Server">2544c2442f9c971000eceb707fa4e318</sys_rte_eb_entity>
+        <sys_scope display_value="Server Inventory - XML">b00e05eb2f84931000eceb707fa4e31b</sys_scope>
+        <sys_update_name>sys_rte_eb_etl_field_2e9047042f94d71000eceb707fa4e389</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-10-28 09:42:13</sys_updated_on>
+    </sys_rte_eb_etl_field>
+</record_update>

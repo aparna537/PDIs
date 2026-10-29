@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_rte_eb_script_operation">
+    <sys_rte_eb_script_operation action="DELETE">
+        <conditional_fields/>
+        <conditional_script><![CDATA[/* Example Script
+(function(batch, output) {
+    for (var i = 0; i < batch.length; i++) {
+        
+        // step1: access the input variables
+        var a = batch[i].input;
+
+        // step2: your script code goes here
+        // based on the input variables assign variable 'b' to true or false.
+        var b = true; // or false;
+
+        // step3: set the output for each element
+        output[i] = b;
+    }
+})(batch, output);
+*/
+(function(batch, output) {
+    // add your code here
+    
+})(batch, output);]]></conditional_script>
+        <is_conditional>false</is_conditional>
+        <name>SN test</name>
+        <operation_group/>
+        <order>100</order>
+        <script><![CDATA[/* Example Script 
+ (function(batch, output) {
+     for (var i = 0; i < batch.length; i++) {
+ 
+         //step1: access the input variables
+         var a = batch[i].input; //Value of the source field. 
+ 
+         //step2: Your script/code goes here.
+         var b = a + 1;
+ 
+         //step3: set the output for each elements
+         output[i] = b;
+     }
+ 
+ })(batch, output);
+ */
+
+(function(batch, output) {
+    // add your code here.
+
+gs.info('batch'+ JSON.stringify(batch));
+
+})(batch, output);]]></script>
+        <source_sys_rte_eb_field display_value="serial number">d6150b4c2f94d71000eceb707fa4e390</source_sys_rte_eb_field>
+        <source_sys_rte_eb_fields/>
+        <sys_class_name>sys_rte_eb_script_operation</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-10-28 10:28:38</sys_created_on>
+        <sys_id>f94b87882fd4d71000eceb707fa4e374</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>SN test</sys_name>
+        <sys_package display_value="Server Inventory - XML" source="x_2226556_server_0">b00e05eb2f84931000eceb707fa4e31b</sys_package>
+        <sys_policy/>
+        <sys_rte_eb_definition display_value="Server ETL">9582dfff2fc4571000eceb707fa4e378</sys_rte_eb_definition>
+        <sys_rte_eb_entity display_value="Staging Table">f04506802f10971000eceb707fa4e37f</sys_rte_eb_entity>
+        <sys_scope display_value="Server Inventory - XML">b00e05eb2f84931000eceb707fa4e31b</sys_scope>
+        <sys_update_name>sys_rte_eb_script_operation_f94b87882fd4d71000eceb707fa4e374</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-10-28 10:28:38</sys_updated_on>
+        <target_sys_rte_eb_field display_value="serial number">d6150b4c2f94d71000eceb707fa4e390</target_sys_rte_eb_field>
+        <target_sys_rte_eb_fields/>
+        <type display_value="Script Operation">941f88e273b333002b6265a751ab9e84</type>
+        <use_unique_input_sets>true</use_unique_input_sets>
+    </sys_rte_eb_script_operation>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="Server Inventory - XML">b00e05eb2f84931000eceb707fa4e31b</application>
+        <file_path/>
+        <instance_id>c01cba4393310b1cd9f6ddd548373c08</instance_id>
+        <instance_name>dev423202</instance_name>
+        <name>sys_rte_eb_script_operation_f94b87882fd4d71000eceb707fa4e374</name>
+        <payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;record_update table="sys_rte_eb_script_operation"&gt;&lt;sys_rte_eb_script_operation action="INSERT_OR_UPDATE"&gt;&lt;conditional_fields/&gt;&lt;conditional_script&gt;&lt;![CDATA[/* Example Script
+(function(batch, output) {
+    for (var i = 0; i &lt; batch.length; i++) {
+        
+        // step1: access the input variables
+        var a = batch[i].input;
+
+        // step2: your script code goes here
+        // based on the input variables assign variable 'b' to true or false.
+        var b = true; // or false;
+
+        // step3: set the output for each element
+        output[i] = b;
+    }
+})(batch, output);
+*/
+(function(batch, output) {
+    // add your code here
+    
+})(batch, output);]]&gt;&lt;/conditional_script&gt;&lt;is_conditional&gt;false&lt;/is_conditional&gt;&lt;name&gt;SN test&lt;/name&gt;&lt;operation_group/&gt;&lt;order&gt;100&lt;/order&gt;&lt;script&gt;&lt;![CDATA[/* Example Script 
+ (function(batch, output) {
+     for (var i = 0; i &lt; batch.length; i++) {
+ 
+         //step1: access the input variables
+         var a = batch[i].input; //Value of the source field. 
+ 
+         //step2: Your script/code goes here.
+         var b = a + 1;
+ 
+         //step3: set the output for each elements
+         output[i] = b;
+     }
+ 
+ })(batch, output);
+ */
+
+(function(batch, output) {
+    // add your code here.
+
+gs.info('batch'+ JSON.stringify(batch));
+
+})(batch, output);]]&gt;&lt;/script&gt;&lt;source_sys_rte_eb_field display_value="serial number"&gt;d6150b4c2f94d71000eceb707fa4e390&lt;/source_sys_rte_eb_field&gt;&lt;source_sys_rte_eb_fields/&gt;&lt;sys_class_name&gt;sys_rte_eb_script_operation&lt;/sys_class_name&gt;&lt;sys_created_by&gt;admin&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2026-10-28 10:28:38&lt;/sys_created_on&gt;&lt;sys_id&gt;f94b87882fd4d71000eceb707fa4e374&lt;/sys_id&gt;&lt;sys_mod_count&gt;0&lt;/sys_mod_count&gt;&lt;sys_name&gt;SN test&lt;/sys_name&gt;&lt;sys_package display_value="Server Inventory - XML" source="x_2226556_server_0"&gt;b00e05eb2f84931000eceb707fa4e31b&lt;/sys_package&gt;&lt;sys_policy/&gt;&lt;sys_rte_eb_definition display_value="Server ETL"&gt;9582dfff2fc4571000eceb707fa4e378&lt;/sys_rte_eb_definition&gt;&lt;sys_rte_eb_entity display_value="Staging Table"&gt;f04506802f10971000eceb707fa4e37f&lt;/sys_rte_eb_entity&gt;&lt;sys_scope display_value="Server Inventory - XML"&gt;b00e05eb2f84931000eceb707fa4e31b&lt;/sys_scope&gt;&lt;sys_update_name&gt;sys_rte_eb_script_operation_f94b87882fd4d71000eceb707fa4e374&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;admin&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2026-10-28 10:28:38&lt;/sys_updated_on&gt;&lt;target_sys_rte_eb_field display_value="serial number"&gt;d6150b4c2f94d71000eceb707fa4e390&lt;/target_sys_rte_eb_field&gt;&lt;target_sys_rte_eb_fields/&gt;&lt;type display_value="Script Operation"&gt;941f88e273b333002b6265a751ab9e84&lt;/type&gt;&lt;use_unique_input_sets&gt;true&lt;/use_unique_input_sets&gt;&lt;/sys_rte_eb_script_operation&gt;&lt;/record_update&gt;</payload>
+        <payload_hash>1426316893</payload_hash>
+        <record_name>SN test</record_name>
+        <reverted_from/>
+        <source>3c0e05eb2f84931000eceb707fa4e349</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-10-28 10:28:38</sys_created_on>
+        <sys_id>799b03c82fd4d71000eceb707fa4e346</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>1a1820e02230000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-10-28 10:28:38</sys_updated_on>
+        <type>RTE Entity Script Operation</type>
+        <update_guid>399b03c8f7d4d710cbd60c8638640945</update_guid>
+        <update_guid_history>399b03c8f7d4d710cbd60c8638640945:1426316893</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-10-28 11:59:13</sys_created_on>
+        <sys_db_object display_value="" name="sys_rte_eb_script_operation">sys_rte_eb_script_operation</sys_db_object>
+        <sys_id>020e7db123b44d709e7454dc08c61840</sys_id>
+        <sys_metadata>f94b87882fd4d71000eceb707fa4e374</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>SN test</sys_name>
+        <sys_package display_value="Server Inventory - XML" source="x_2226556_server_0">b00e05eb2f84931000eceb707fa4e31b</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="Server Inventory - XML">b00e05eb2f84931000eceb707fa4e31b</sys_scope>
+        <sys_scope_delete display_value="">7e6f18085a5d403484d2ad3504a6a279</sys_scope_delete>
+        <sys_update_name>sys_rte_eb_script_operation_f94b87882fd4d71000eceb707fa4e374</sys_update_name>
+        <sys_update_version display_value="sys_rte_eb_script_operation_f94b87882fd4d71000eceb707fa4e374">799b03c82fd4d71000eceb707fa4e346</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-10-28 11:59:13</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

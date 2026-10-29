@@ -1,0 +1,947 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_2226556_server_0.ServerDemoIntegrationService</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description/>
+        <mobile_callable>false</mobile_callable>
+        <name>ServerDemoIntegrationService</name>
+        <sandbox_callable>false</sandbox_callable>
+        <script><![CDATA[var ServerDemoIntegrationService = Class.create();
+
+ServerDemoIntegrationService.prototype = {
+    initialize: function() {
+        this.STAGING_TABLE =
+            'x_2226556_server_0_canopi_stg';
+
+        this.TRANSFORM_EVENT =
+            'x_2226556_server_0.server_s';
+
+        /*
+         * Informational only. Do not pass this value to setMapID()
+         * unless it is a record from sys_transform_map.
+         */
+        this.ROBUST_TRANSFORMER_SYS_ID =
+            '9bd6eebb2f40571000eceb707fa4e3bc';
+
+        this.LOG_PREFIX =
+            '[ServerDemoIntegrationService] ';
+
+        /*
+         * Left side: incoming JSON property.
+         * Right side: staging-table element name.
+         *
+         * The helper also checks the destination name without "u_"
+         * when the configured u_* field does not exist.
+         */
+        this.FIELD_MAP = {
+            name: 'u_name',
+            serverName: 'u_name',
+
+            host_name: 'u_host_name',
+            hostName: 'u_host_name',
+
+            fqdn: 'u_fqdn',
+
+            serial_number: 'u_serial_number',
+            serialNumber: 'u_serial_number',
+
+            asset_tag: 'u_asset_tag',
+            assetTag: 'u_asset_tag',
+
+            manufacturer: 'u_manufacturer',
+
+            model: 'u_model',
+            model_id: 'u_model_id',
+            modelId: 'u_model_id',
+
+            model_number: 'u_model_number',
+            modelNumber: 'u_model_number',
+
+            os: 'u_os',
+
+            os_version: 'u_os_version',
+            osVersion: 'u_os_version',
+
+            ip_address: 'u_ip_address',
+            ipAddress: 'u_ip_address',
+
+            mac_address: 'u_mac_address',
+            macAddress: 'u_mac_address',
+
+            cpu_count: 'u_cpu_count',
+            cpuCount: 'u_cpu_count',
+
+            cpu_core_count: 'u_cpu_core_count',
+            cpuCoreCount: 'u_cpu_core_count',
+
+            ram: 'u_ram',
+            disk_space: 'u_disk_space',
+            diskSpace: 'u_disk_space',
+
+            environment: 'u_environment',
+
+            operational_status: 'u_operational_status',
+            operationalStatus: 'u_operational_status',
+
+            install_status: 'u_install_status',
+            installStatus: 'u_install_status',
+
+            location: 'u_location',
+            company: 'u_company',
+            department: 'u_department',
+
+            assigned_to: 'u_assigned_to',
+            assignedTo: 'u_assigned_to',
+
+            managed_by: 'u_managed_by',
+            managedBy: 'u_managed_by',
+
+            support_group: 'u_support_group',
+            supportGroup: 'u_support_group',
+
+            correlation_id: 'u_correlation_id',
+            correlationId: 'u_correlation_id',
+
+            discovery_source: 'u_discovery_source',
+            discoverySource: 'u_discovery_source',
+
+            source_native_key: 'u_source_native_key',
+            sourceNativeKey: 'u_source_native_key'
+        };
+    },
+
+    /**
+     * Called by the Scripted REST Resource.
+     *
+     * Creates:
+     * 1. Import-set record
+     * 2. Staging records
+     * 3. Transform event
+     *
+     * @param {Object|String} requestBody
+     * @returns {Object}
+     */
+    processRequest: function(requestBody) {
+        var payload = this._parsePayload(requestBody);
+        var servers = this._extractServerRecords(payload);
+
+        if (!servers.length) {
+            throw new Error(
+                'No server records were supplied in the request'
+            );
+        }
+
+        var importSet = this._createImportSet();
+        var importSetSysId =
+            String(importSet.getUniqueValue());
+
+        var stagingSysIds = [];
+
+        try {
+            for (var i = 0; i < servers.length; i++) {
+                var stagingSysId = this._createStagingRecord(
+                    importSetSysId,
+                    servers[i],
+                    i + 1
+                );
+
+                stagingSysIds.push(stagingSysId);
+            }
+
+            /*
+             * Mark the import set ready for transformation.
+             */
+            if (importSet.isValidField('state')) {
+                importSet.setValue('state', 'loaded');
+                importSet.update();
+            }
+
+            /*
+             * parm1 contains the import-set sys_id.
+             */
+            gs.eventQueue(
+                this.TRANSFORM_EVENT,
+                importSet,
+                importSetSysId,
+                this.STAGING_TABLE
+            );
+
+            gs.info(
+                this.LOG_PREFIX +
+                'Import set and staging records created. ' +
+                'ImportSet=' + importSetSysId +
+                ', StagingCount=' + stagingSysIds.length
+            );
+
+            return {
+                success: true,
+                accepted: true,
+                background: true,
+                importSetSysId: importSetSysId,
+                stagingSysIds: stagingSysIds,
+                stagingRecordCount: stagingSysIds.length,
+                robustTransformerSysId:
+                    this.ROBUST_TRANSFORMER_SYS_ID,
+                message:
+                    'Import set and staging records created; ' +
+                    'transform execution was queued'
+            };
+        } catch (exception) {
+            if (importSet.isValidField('state')) {
+                importSet.setValue('state', 'error');
+                importSet.update();
+            }
+
+            gs.error(
+                this.LOG_PREFIX +
+                'Failed to create staging records. ' +
+                'ImportSet=' + importSetSysId +
+                ', Error=' + this._getErrorMessage(exception)
+            );
+
+            throw exception;
+        }
+    },
+
+    /**
+     * Called by the scoped Script Action when the event is received.
+     *
+     * The transformation executes synchronously inside the event
+     * transaction. The original REST request remains asynchronous.
+     *
+     * @param {String} importSetSysId
+     * @returns {Object}
+     */
+    processImportSet: function(importSetSysId) {
+        importSetSysId =
+            String(importSetSysId || '').trim();
+
+        if (!/^[0-9a-f]{32}$/i.test(importSetSysId)) {
+            throw new Error(
+                'A valid import-set sys_id is required'
+            );
+        }
+
+        var importSet = new GlideRecord('sys_import_set');
+
+        if (!importSet.get(importSetSysId)) {
+            throw new Error(
+                'Import set not found: ' + importSetSysId
+            );
+        }
+
+        var sourceTable = String(
+            importSet.getValue('table_name') || ''
+        );
+
+        if (sourceTable !== this.STAGING_TABLE) {
+            throw new Error(
+                'Unexpected import-set source table. Expected=' +
+                this.STAGING_TABLE +
+                ', Actual=' + sourceTable
+            );
+        }
+
+        var pendingCount =
+            this._getPendingStagingCount(importSetSysId);
+
+        if (pendingCount === 0) {
+            return {
+                success: false,
+                accepted: false,
+                importSetSysId: importSetSysId,
+                sourceTable: sourceTable,
+                message:
+                    'No pending staging records were found'
+            };
+        }
+
+        gs.info(
+            this.LOG_PREFIX +
+            'Starting scoped import transformation. ' +
+            'ImportSet=' + importSetSysId +
+            ', PendingRows=' + pendingCount
+        );
+
+        try {
+            var transformer =
+                new GlideImportSetTransformer();
+
+            transformer.setSyncImport(true);
+            transformer.setImportSetID(importSetSysId);
+
+            /*
+             * Do not call setMapID() with the Robust Transformer sys_id.
+             * setMapID() expects a compatible standard transform-map ID.
+             */
+            transformer.transformAllMaps(importSet);
+
+            var result =
+                this._buildTransformResult(importSetSysId);
+
+            gs.info(
+                this.LOG_PREFIX +
+                'Import transformation completed. Result=' +
+                JSON.stringify(result)
+            );
+
+            return result;
+        } catch (exception) {
+            var errorMessage =
+                this._getErrorMessage(exception);
+
+            gs.error(
+                this.LOG_PREFIX +
+                'Import transformation failed. ' +
+                'ImportSet=' + importSetSysId +
+                ', Error=' + errorMessage
+            );
+
+            throw exception;
+        }
+    },
+
+    _createImportSet: function() {
+        var importSet =
+            new GlideRecord('sys_import_set');
+
+        importSet.initialize();
+
+        importSet.setValue(
+            'table_name',
+            this.STAGING_TABLE
+        );
+
+        if (importSet.isValidField('short_description')) {
+            importSet.setValue(
+                'short_description',
+                'Server Inventory API import'
+            );
+        }
+
+        if (importSet.isValidField('state')) {
+            importSet.setValue('state', 'loading');
+        }
+
+        if (importSet.isValidField('mode')) {
+            importSet.setValue('mode', 'asynchronous');
+        }
+
+        var importSetSysId = importSet.insert();
+
+        if (!importSetSysId) {
+            throw new Error(
+                'Unable to create the import-set record'
+            );
+        }
+
+        return importSet;
+    },
+
+    _createStagingRecord: function(
+        importSetSysId,
+        server,
+        rowNumber
+    ) {
+        if (
+            !server ||
+            typeof server !== 'object'
+        ) {
+            throw new Error(
+                'Server record ' + rowNumber +
+                ' is not a valid object'
+            );
+        }
+
+        var staging =
+            new GlideRecord(this.STAGING_TABLE);
+
+        staging.initialize();
+
+        if (!staging.isValidField('sys_import_set')) {
+            throw new Error(
+                'The staging table does not contain ' +
+                'the sys_import_set field'
+            );
+        }
+
+        staging.setValue(
+            'sys_import_set',
+            importSetSysId
+        );
+
+        if (staging.isValidField('sys_import_row')) {
+            staging.setValue(
+                'sys_import_row',
+                rowNumber
+            );
+        }
+
+        if (staging.isValidField('sys_import_state')) {
+            staging.setValue(
+                'sys_import_state',
+                'pending'
+            );
+        }
+
+        this._mapServerFields(staging, server);
+        this._storeRawPayload(staging, server);
+
+        var stagingSysId = staging.insert();
+
+        if (!stagingSysId) {
+            throw new Error(
+                'Unable to insert staging record ' +
+                rowNumber
+            );
+        }
+
+        return String(stagingSysId);
+    },
+
+    _mapServerFields: function(staging, server) {
+        var mappedProperties = {};
+        var propertyName;
+        var configuredField;
+        var stagingField;
+
+        /*
+         * Apply explicit mappings first.
+         */
+        for (propertyName in this.FIELD_MAP) {
+            if (!this.FIELD_MAP.hasOwnProperty(propertyName)) {
+                continue;
+            }
+
+            if (!server.hasOwnProperty(propertyName)) {
+                continue;
+            }
+
+            if (
+                server[propertyName] === null ||
+                typeof server[propertyName] === 'undefined'
+            ) {
+                continue;
+            }
+
+            configuredField =
+                this.FIELD_MAP[propertyName];
+
+            stagingField =
+                this._resolveStagingField(
+                    staging,
+                    configuredField
+                );
+
+            if (!stagingField) {
+                gs.warn(
+                    this.LOG_PREFIX +
+                    'Configured staging field does not exist. ' +
+                    'PayloadProperty=' + propertyName +
+                    ', ConfiguredField=' + configuredField
+                );
+
+                continue;
+            }
+
+            staging.setValue(
+                stagingField,
+                this._convertValue(
+                    server[propertyName]
+                )
+            );
+
+            mappedProperties[propertyName] = true;
+        }
+
+        /*
+         * Automatically map additional flat properties where the
+         * staging table contains either:
+         *
+         * property_name
+         * u_property_name
+         */
+        for (propertyName in server) {
+            if (
+                !server.hasOwnProperty(propertyName) ||
+                mappedProperties[propertyName]
+            ) {
+                continue;
+            }
+
+            if (
+                server[propertyName] === null ||
+                typeof server[propertyName] === 'undefined'
+            ) {
+                continue;
+            }
+
+            stagingField =
+                this._findAutomaticStagingField(
+                    staging,
+                    propertyName
+                );
+
+            if (stagingField) {
+                staging.setValue(
+                    stagingField,
+                    this._convertValue(
+                        server[propertyName]
+                    )
+                );
+
+                mappedProperties[propertyName] = true;
+            } else {
+                gs.warn(
+                    this.LOG_PREFIX +
+                    'Payload property was not mapped. ' +
+                    'Property=' + propertyName +
+                    ', Value=' +
+                    this._truncate(
+                        this._convertValue(
+                            server[propertyName]
+                        ),
+                        500
+                    )
+                );
+            }
+        }
+    },
+
+    _resolveStagingField: function(
+        staging,
+        configuredField
+    ) {
+        configuredField =
+            String(configuredField || '');
+
+        if (
+            configuredField &&
+            staging.isValidField(configuredField)
+        ) {
+            return configuredField;
+        }
+
+        /*
+         * If u_name does not exist, also test name.
+         */
+        if (
+            configuredField.indexOf('u_') === 0
+        ) {
+            var fieldWithoutPrefix =
+                configuredField.substring(2);
+
+            if (
+                staging.isValidField(
+                    fieldWithoutPrefix
+                )
+            ) {
+                return fieldWithoutPrefix;
+            }
+        }
+
+        /*
+         * If name does not exist, also test u_name.
+         */
+        if (
+            configuredField &&
+            configuredField.indexOf('u_') !== 0 &&
+            staging.isValidField(
+                'u_' + configuredField
+            )
+        ) {
+            return 'u_' + configuredField;
+        }
+
+        return '';
+    },
+
+    _findAutomaticStagingField: function(
+        staging,
+        propertyName
+    ) {
+        propertyName = String(propertyName || '');
+
+        if (!propertyName) {
+            return '';
+        }
+
+        /*
+         * Prevent payload values from writing to import-system fields.
+         */
+        if (
+            propertyName.indexOf('sys_') === 0
+        ) {
+            return '';
+        }
+
+        if (staging.isValidField(propertyName)) {
+            return propertyName;
+        }
+
+        if (
+            staging.isValidField(
+                'u_' + propertyName
+            )
+        ) {
+            return 'u_' + propertyName;
+        }
+
+        return '';
+    },
+
+    _storeRawPayload: function(staging, server) {
+        var candidateFields = [
+            'u_payload',
+            'payload',
+            'u_raw_payload',
+            'raw_payload'
+        ];
+
+        for (
+            var i = 0;
+            i < candidateFields.length;
+            i++
+        ) {
+            if (
+                staging.isValidField(
+                    candidateFields[i]
+                )
+            ) {
+                staging.setValue(
+                    candidateFields[i],
+                    JSON.stringify(server)
+                );
+
+                return;
+            }
+        }
+    },
+
+    _convertValue: function(value) {
+        if (
+            value === null ||
+            typeof value === 'undefined'
+        ) {
+            return '';
+        }
+
+        if (typeof value === 'boolean') {
+            return value ? 'true' : 'false';
+        }
+
+        if (typeof value === 'object') {
+            /*
+             * Common REST/reference representations.
+             */
+            if (
+                typeof value.value !== 'undefined' &&
+                value.value !== null
+            ) {
+                return String(value.value);
+            }
+
+            if (
+                typeof value.sys_id !== 'undefined' &&
+                value.sys_id !== null
+            ) {
+                return String(value.sys_id);
+            }
+
+            if (
+                typeof value.display_value !==
+                    'undefined' &&
+                value.display_value !== null
+            ) {
+                return String(value.display_value);
+            }
+
+            return JSON.stringify(value);
+        }
+
+        return String(value);
+    },
+
+    _parsePayload: function(requestBody) {
+        if (
+            requestBody === null ||
+            typeof requestBody === 'undefined'
+        ) {
+            throw new Error(
+                'The request body is required'
+            );
+        }
+
+        if (typeof requestBody === 'string') {
+            try {
+                return JSON.parse(requestBody);
+            } catch (exception) {
+                throw new Error(
+                    'The request body is not valid JSON'
+                );
+            }
+        }
+
+        return requestBody;
+    },
+
+    _extractServerRecords: function(payload) {
+        if (!payload) {
+            return [];
+        }
+
+        if (
+            Object.prototype.toString.call(payload) ===
+            '[object Array]'
+        ) {
+            return payload;
+        }
+
+        if (
+            payload.servers &&
+            Object.prototype.toString.call(
+                payload.servers
+            ) === '[object Array]'
+        ) {
+            return payload.servers;
+        }
+
+        if (
+            payload.records &&
+            Object.prototype.toString.call(
+                payload.records
+            ) === '[object Array]'
+        ) {
+            return payload.records;
+        }
+
+        if (
+            payload.result &&
+            Object.prototype.toString.call(
+                payload.result
+            ) === '[object Array]'
+        ) {
+            return payload.result;
+        }
+
+        if (
+            payload.server &&
+            typeof payload.server === 'object'
+        ) {
+            return [payload.server];
+        }
+
+        if (typeof payload === 'object') {
+            return [payload];
+        }
+
+        return [];
+    },
+
+    _getPendingStagingCount: function(
+        importSetSysId
+    ) {
+        var staging =
+            new GlideRecord(this.STAGING_TABLE);
+
+        staging.addQuery(
+            'sys_import_set',
+            importSetSysId
+        );
+
+        /*
+         * Include all rows for this import set. Some staging tables
+         * do not use "pending" as the initial state consistently.
+         */
+        staging.query();
+
+        return staging.getRowCount();
+    },
+
+    _buildTransformResult: function(
+        importSetSysId
+    ) {
+        var result = {
+            success: true,
+            accepted: true,
+            background: false,
+            synchronous: true,
+            importSetSysId: importSetSysId,
+            runSysId: '',
+            state: '',
+            inserts: 0,
+            updates: 0,
+            ignored: 0,
+            errors: 0,
+            stagingStates:
+                this._getStagingStates(importSetSysId),
+            message:
+                'Import transformation call completed'
+        };
+
+        var run = new GlideRecord(
+            'sys_import_set_run'
+        );
+
+        if (!run.isValidField('set')) {
+            result.message =
+                'Transformation completed; the import-set run ' +
+                'reference field could not be queried';
+
+            return result;
+        }
+
+        run.addQuery('set', importSetSysId);
+        run.orderByDesc('sys_created_on');
+        run.setLimit(1);
+        run.query();
+
+        if (!run.next()) {
+            result.success = false;
+            result.accepted = false;
+            result.message =
+                'Transformation returned, but no import-set ' +
+                'run was found';
+
+            return result;
+        }
+
+        result.runSysId =
+            String(run.getUniqueValue());
+
+        result.state =
+            this._getRecordValue(run, 'state');
+
+        result.inserts =
+            this._getIntegerValue(run, 'inserts');
+
+        result.updates =
+            this._getIntegerValue(run, 'updates');
+
+        result.ignored =
+            this._getIntegerValue(run, 'ignored');
+
+        result.errors =
+            this._getIntegerValue(run, 'errors');
+
+        if (result.errors > 0) {
+            result.success = false;
+            result.message =
+                'Import transformation completed with errors';
+        } else if (
+            result.inserts === 0 &&
+            result.updates === 0
+        ) {
+            result.message =
+                'Transformation completed, but no target ' +
+                'records were inserted or updated';
+        } else {
+            result.message =
+                'Import transformation completed successfully';
+        }
+
+        return result;
+    },
+
+    _getStagingStates: function(
+        importSetSysId
+    ) {
+        var states = {};
+        var staging =
+            new GlideRecord(this.STAGING_TABLE);
+
+        staging.addQuery(
+            'sys_import_set',
+            importSetSysId
+        );
+
+        staging.query();
+
+        while (staging.next()) {
+            var state = staging.isValidField(
+                'sys_import_state'
+            ) ?
+                String(
+                    staging.getValue(
+                        'sys_import_state'
+                    ) || 'empty'
+                ) :
+                'not_available';
+
+            if (!states[state]) {
+                states[state] = 0;
+            }
+
+            states[state]++;
+        }
+
+        return states;
+    },
+
+    _getRecordValue: function(record, fieldName) {
+        if (!record.isValidField(fieldName)) {
+            return '';
+        }
+
+        return String(
+            record.getValue(fieldName) || ''
+        );
+    },
+
+    _getIntegerValue: function(
+        record,
+        fieldName
+    ) {
+        if (!record.isValidField(fieldName)) {
+            return 0;
+        }
+
+        return parseInt(
+            record.getValue(fieldName),
+            10
+        ) || 0;
+    },
+
+    _getErrorMessage: function(exception) {
+        if (
+            exception &&
+            exception.message
+        ) {
+            return String(exception.message);
+        }
+
+        return String(exception);
+    },
+
+    _truncate: function(value, maximumLength) {
+        value = String(value || '');
+
+        if (value.length <= maximumLength) {
+            return value;
+        }
+
+        return value.substring(
+            0,
+            maximumLength
+        ) + '...';
+    },
+
+    type: 'ServerDemoIntegrationService'
+};]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-10-28 05:08:10</sys_created_on>
+        <sys_id>ccc10ecc2f5c971000eceb707fa4e352</sys_id>
+        <sys_mod_count>20</sys_mod_count>
+        <sys_name>ServerDemoIntegrationService</sys_name>
+        <sys_package display_value="Server Inventory - XML" source="x_2226556_server_0">b00e05eb2f84931000eceb707fa4e31b</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="Server Inventory - XML">b00e05eb2f84931000eceb707fa4e31b</sys_scope>
+        <sys_update_name>sys_script_include_ccc10ecc2f5c971000eceb707fa4e352</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-10-28 15:26:25</sys_updated_on>
+    </sys_script_include>
+</record_update>

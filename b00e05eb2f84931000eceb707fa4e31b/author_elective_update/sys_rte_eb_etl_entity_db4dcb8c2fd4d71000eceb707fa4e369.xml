@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_rte_eb_etl_entity">
+    <sys_rte_eb_etl_entity action="DELETE">
+        <child_id_field/>
+        <name>import</name>
+        <parent_entity/>
+        <parent_id_field/>
+        <path/>
+        <run_business_rules>false</run_business_rules>
+        <synchronize_inserts>false</synchronize_inserts>
+        <sys_class_name>sys_rte_eb_etl_entity</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-10-28 10:37:29</sys_created_on>
+        <sys_id>db4dcb8c2fd4d71000eceb707fa4e369</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>import</sys_name>
+        <sys_package display_value="Server Inventory - XML" source="x_2226556_server_0">b00e05eb2f84931000eceb707fa4e31b</sys_package>
+        <sys_policy/>
+        <sys_rte_eb_definition display_value="Server ETL">9582dfff2fc4571000eceb707fa4e378</sys_rte_eb_definition>
+        <sys_scope display_value="Server Inventory - XML">b00e05eb2f84931000eceb707fa4e31b</sys_scope>
+        <sys_update_name>sys_rte_eb_etl_entity_db4dcb8c2fd4d71000eceb707fa4e369</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-10-28 10:37:29</sys_updated_on>
+        <table/>
+    </sys_rte_eb_etl_entity>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="Server Inventory - XML">b00e05eb2f84931000eceb707fa4e31b</application>
+        <file_path/>
+        <instance_id>c01cba4393310b1cd9f6ddd548373c08</instance_id>
+        <instance_name>dev423202</instance_name>
+        <name>sys_rte_eb_etl_entity_db4dcb8c2fd4d71000eceb707fa4e369</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_rte_eb_etl_entity"><sys_rte_eb_etl_entity action="INSERT_OR_UPDATE"><child_id_field/><name>import</name><parent_entity/><parent_id_field/><path/><run_business_rules>false</run_business_rules><synchronize_inserts>false</synchronize_inserts><sys_class_name>sys_rte_eb_etl_entity</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2026-10-28 10:37:29</sys_created_on><sys_id>db4dcb8c2fd4d71000eceb707fa4e369</sys_id><sys_mod_count>0</sys_mod_count><sys_name>import</sys_name><sys_package display_value="Server Inventory - XML" source="x_2226556_server_0">b00e05eb2f84931000eceb707fa4e31b</sys_package><sys_policy/><sys_rte_eb_definition display_value="Server ETL">9582dfff2fc4571000eceb707fa4e378</sys_rte_eb_definition><sys_scope display_value="Server Inventory - XML">b00e05eb2f84931000eceb707fa4e31b</sys_scope><sys_update_name>sys_rte_eb_etl_entity_db4dcb8c2fd4d71000eceb707fa4e369</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2026-10-28 10:37:29</sys_updated_on><table/></sys_rte_eb_etl_entity></record_update>]]></payload>
+        <payload_hash>1864297793</payload_hash>
+        <record_name>import</record_name>
+        <reverted_from/>
+        <source>3c0e05eb2f84931000eceb707fa4e349</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-10-28 10:37:29</sys_created_on>
+        <sys_id>9b9dc3cc2fd4d71000eceb707fa4e367</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>1a182161c300000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-10-28 10:37:29</sys_updated_on>
+        <type>ETL Entity</type>
+        <update_guid>5b9dc3ccf7d4d71088b203b51da38066</update_guid>
+        <update_guid_history>5b9dc3ccf7d4d71088b203b51da38066:1864297793</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-10-28 10:39:17</sys_created_on>
+        <sys_db_object display_value="" name="sys_rte_eb_etl_entity">sys_rte_eb_etl_entity</sys_db_object>
+        <sys_id>16faae7626544895a307d2361af7eb39</sys_id>
+        <sys_metadata>db4dcb8c2fd4d71000eceb707fa4e369</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>import</sys_name>
+        <sys_package display_value="Server Inventory - XML" source="x_2226556_server_0">b00e05eb2f84931000eceb707fa4e31b</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="Server Inventory - XML">b00e05eb2f84931000eceb707fa4e31b</sys_scope>
+        <sys_scope_delete display_value="">7e6f18085a5d403484d2ad3504a6a279</sys_scope_delete>
+        <sys_update_name>sys_rte_eb_etl_entity_db4dcb8c2fd4d71000eceb707fa4e369</sys_update_name>
+        <sys_update_version display_value="sys_rte_eb_etl_entity_db4dcb8c2fd4d71000eceb707fa4e369">9b9dc3cc2fd4d71000eceb707fa4e367</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-10-28 10:39:17</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

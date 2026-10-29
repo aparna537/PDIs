@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element attributes="enforce_dot_walk_cross_scope_access=true" db_object_id="5d5a2f942f1c5b1000eceb707fa4e3ce" extends="sys_import_set_row" label="IH-ETL source" max_length="40" name="x_2226556_server_0_cr_server_ingestion" type="collection">
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=http response code" label="http response code" max_length="40" name="u_http_response_code" type="string"/>
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=error message" label="error message" max_length="40" name="u_error_message" type="string"/>
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=integration user" label="integration user" max_length="40" name="u_integration_user" type="string"/>
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=external tracking ID" label="external tracking ID" max_length="40" name="u_external_tracking_id" type="string"/>
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=payload" label="payload" max_length="40" name="u_payload" type="string"/>
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=response message" label="response message" max_length="40" name="u_response_message" type="string"/>
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=translated event" label="translated event" max_length="40" name="u_translated_event" type="string"/>
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=source system" label="source system" max_length="40" name="u_source_system" type="string"/>
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=action" label="action" max_length="40" name="u_action" type="string"/>
+    </element>
+</database>

@@ -1,11 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="sys_rte_eb_field">
-  <sys_rte_eb_field action="INSERT_OR_UPDATE" apply_defaults="true">
-    <sys_id>e5a033284a2944fc93eefd03236bc99d</sys_id>
-    <sys_scope display_value="x_2226556_server_0">b00e05eb2f84931000eceb707fa4e31b</sys_scope>
-    <sys_update_name>sys_rte_eb_field_e5a033284a2944fc93eefd03236bc99d</sys_update_name>
-    <field>short_description</field>
-    <name>short_description</name>
-    <sys_rte_eb_definition>33e92b464a0b4ab8835598394a99c24c</sys_rte_eb_definition>
-    <sys_rte_eb_entity>faa6e469601e493693b46fc1861e74ed</sys_rte_eb_entity>
-  </sys_rte_eb_field>
+    <sys_rte_eb_field action="INSERT_OR_UPDATE">
+        <field>short_description</field>
+        <name>short_description</name>
+        <sys_class_name>sys_rte_eb_field</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-10-26 17:11:32</sys_created_on>
+        <sys_id>e5a033284a2944fc93eefd03236bc99d</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>short_description</sys_name>
+        <sys_package display_value="Server Inventory - XML" source="x_2226556_server_0">b00e05eb2f84931000eceb707fa4e31b</sys_package>
+        <sys_policy/>
+        <sys_rte_eb_definition display_value="CANOPI Server Transform">33e92b464a0b4ab8835598394a99c24c</sys_rte_eb_definition>
+        <sys_rte_eb_entity display_value="Server CI">faa6e469601e493693b46fc1861e74ed</sys_rte_eb_entity>
+        <sys_scope display_value="Server Inventory - XML">b00e05eb2f84931000eceb707fa4e31b</sys_scope>
+        <sys_update_name>sys_rte_eb_field_e5a033284a2944fc93eefd03236bc99d</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-10-26 17:11:32</sys_updated_on>
+    </sys_rte_eb_field>
 </record_update>

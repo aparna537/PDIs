@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="cmdb_reconciliation_definition">
+    <cmdb_reconciliation_definition action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <applies_to>cmdb_ci_server</applies_to>
+        <attributes>serial_number</attributes>
+        <condition/>
+        <discovery_source>Altiris</discovery_source>
+        <name>Server rule by Altiris</name>
+        <null_update/>
+        <priority>100</priority>
+        <sys_class_name>cmdb_reconciliation_definition</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-10-28 11:23:06</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>ab08d7802f58d71000eceb707fa4e3c3</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Server rule by Altiris</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="Server Inventory - XML" source="x_2226556_server_0">b00e05eb2f84931000eceb707fa4e31b</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Server Inventory - XML">b00e05eb2f84931000eceb707fa4e31b</sys_scope>
+        <sys_update_name>cmdb_reconciliation_definition_ab08d7802f58d71000eceb707fa4e3c3</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-10-28 11:23:06</sys_updated_on>
+    </cmdb_reconciliation_definition>
+</record_update>

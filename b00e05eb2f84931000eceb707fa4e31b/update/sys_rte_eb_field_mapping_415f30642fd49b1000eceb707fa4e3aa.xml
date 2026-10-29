@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_rte_eb_field_mapping">
+    <sys_rte_eb_field_mapping action="INSERT_OR_UPDATE">
+        <order>100</order>
+        <referenced_sys_rte_eb_entity/>
+        <source_sys_rte_eb_field display_value="discovery source">c30ff4242fd49b1000eceb707fa4e317</source_sys_rte_eb_field>
+        <sys_class_name>sys_rte_eb_field_mapping</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-10-29 13:33:02</sys_created_on>
+        <sys_id>415f30642fd49b1000eceb707fa4e3aa</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name/>
+        <sys_package display_value="Server Inventory - XML" source="x_2226556_server_0">b00e05eb2f84931000eceb707fa4e31b</sys_package>
+        <sys_policy/>
+        <sys_rte_eb_definition display_value="Server CR Data Ingestion">5c97bb902f9c5b1000eceb707fa4e3cf</sys_rte_eb_definition>
+        <sys_rte_eb_entity_mapping display_value="tempToServer 1">0d18ff902f9c5b1000eceb707fa4e3e4</sys_rte_eb_entity_mapping>
+        <sys_scope display_value="Server Inventory - XML">b00e05eb2f84931000eceb707fa4e31b</sys_scope>
+        <sys_update_name>sys_rte_eb_field_mapping_415f30642fd49b1000eceb707fa4e3aa</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-10-29 13:33:02</sys_updated_on>
+        <target_sys_rte_eb_field display_value="discovery source">ce3f3c242fd49b1000eceb707fa4e3ef</target_sys_rte_eb_field>
+    </sys_rte_eb_field_mapping>
+</record_update>

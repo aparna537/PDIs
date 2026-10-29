@@ -1,31 +1,68 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update>
-  <sys_ui_form_sections form_id="d769a6c59edb4d688c57481fe86e2d6b" sys_domain="global" table="x_2226556_server_0_canopi_stg">
-    <sys_ui_form_section action="INSERT_OR_UPDATE" apply_defaults="true">
-      <position>0</position>
-      <sys_id>ba848a838df8459a9731469097c18158</sys_id>
-      <sys_ui_form display_value="x_2226556_server_0_canopi_stg" name="x_2226556_server_0_canopi_stg" sys_domain="global" view="Default view">d769a6c59edb4d688c57481fe86e2d6b</sys_ui_form>
-      <sys_ui_section caption="Staging Details" display_value="Staging Details" name="x_2226556_server_0_canopi_stg" sys_domain="global" view="Default view">0f6279de98f442ca948bffa56309a9c9</sys_ui_section>
-    </sys_ui_form_section>
-    <sys_ui_form_section action="INSERT_OR_UPDATE" apply_defaults="true">
-      <position>1</position>
-      <sys_id>0d128f7cab9e4d7eb3d5e5aa9b6c57d0</sys_id>
-      <sys_ui_form display_value="x_2226556_server_0_canopi_stg" name="x_2226556_server_0_canopi_stg" sys_domain="global" view="Default view">d769a6c59edb4d688c57481fe86e2d6b</sys_ui_form>
-      <sys_ui_section caption="Payload" display_value="Payload" name="x_2226556_server_0_canopi_stg" sys_domain="global" view="Default view">93e3aff2bca34d44b7f1fdb8115cf481</sys_ui_section>
-    </sys_ui_form_section>
-    <sys_ui_form_section action="INSERT_OR_UPDATE" apply_defaults="true">
-      <position>2</position>
-      <sys_id>d1f949f7f91745709ed178d4d8b930e9</sys_id>
-      <sys_ui_form display_value="x_2226556_server_0_canopi_stg" name="x_2226556_server_0_canopi_stg" sys_domain="global" view="Default view">d769a6c59edb4d688c57481fe86e2d6b</sys_ui_form>
-      <sys_ui_section caption="Response" display_value="Response" name="x_2226556_server_0_canopi_stg" sys_domain="global" view="Default view">2da5c006c5a4471296e4d6825bb50b89</sys_ui_section>
-    </sys_ui_form_section>
-    <sys_ui_form action="INSERT_OR_UPDATE" apply_defaults="true">
-      <name>x_2226556_server_0_canopi_stg</name>
-      <roles/>
-      <sys_id>d769a6c59edb4d688c57481fe86e2d6b</sys_id>
-      <sys_scope display_value="x_2226556_server_0">b00e05eb2f84931000eceb707fa4e31b</sys_scope>
-      <sys_user/>
-      <view display_value="Default view" name="NULL">Default view</view>
-      <view_name/>
-    </sys_ui_form>
-  </sys_ui_form_sections>
+    <sys_ui_form_sections form_id="d769a6c59edb4d688c57481fe86e2d6b" sys_domain="global" table="x_2226556_server_0_canopi_stg" version="3">
+        <sys_ui_form_section action="INSERT_OR_UPDATE">
+            <position>0</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-10-27 10:33:44</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>ba848a838df8459a9731469097c18158</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_overrides/>
+            <sys_ui_form display_value="x_2226556_server_0_canopi_stg" name="x_2226556_server_0_canopi_stg" sys_domain="global" view="Default view">d769a6c59edb4d688c57481fe86e2d6b</sys_ui_form>
+            <sys_ui_section caption="Staging Details" display_value="Staging Details" name="x_2226556_server_0_canopi_stg" sys_domain="global" view="Default view">0f6279de98f442ca948bffa56309a9c9</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-10-27 10:33:44</sys_updated_on>
+        </sys_ui_form_section>
+        <sys_ui_form_section action="INSERT_OR_UPDATE">
+            <position>1</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-10-27 10:33:44</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>0d128f7cab9e4d7eb3d5e5aa9b6c57d0</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_overrides/>
+            <sys_ui_form display_value="x_2226556_server_0_canopi_stg" name="x_2226556_server_0_canopi_stg" sys_domain="global" view="Default view">d769a6c59edb4d688c57481fe86e2d6b</sys_ui_form>
+            <sys_ui_section caption="Payload" display_value="Payload" name="x_2226556_server_0_canopi_stg" sys_domain="global" view="Default view">93e3aff2bca34d44b7f1fdb8115cf481</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-10-27 10:33:44</sys_updated_on>
+        </sys_ui_form_section>
+        <sys_ui_form_section action="INSERT_OR_UPDATE">
+            <position>2</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-10-27 10:33:44</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>d1f949f7f91745709ed178d4d8b930e9</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_overrides/>
+            <sys_ui_form display_value="x_2226556_server_0_canopi_stg" name="x_2226556_server_0_canopi_stg" sys_domain="global" view="Default view">d769a6c59edb4d688c57481fe86e2d6b</sys_ui_form>
+            <sys_ui_section caption="Response" display_value="Response" name="x_2226556_server_0_canopi_stg" sys_domain="global" view="Default view">2da5c006c5a4471296e4d6825bb50b89</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-10-27 10:33:44</sys_updated_on>
+        </sys_ui_form_section>
+        <sys_ui_form action="INSERT_OR_UPDATE">
+            <name>x_2226556_server_0_canopi_stg</name>
+            <roles/>
+            <sys_class_name>sys_ui_form</sys_class_name>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-10-27 05:48:41</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>d769a6c59edb4d688c57481fe86e2d6b</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>x_2226556_server_0_canopi_stg</sys_name>
+            <sys_overrides/>
+            <sys_package display_value="Server Inventory - XML" source="x_2226556_server_0">b00e05eb2f84931000eceb707fa4e31b</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="Server Inventory - XML">b00e05eb2f84931000eceb707fa4e31b</sys_scope>
+            <sys_update_name>sys_ui_form_sections_d769a6c59edb4d688c57481fe86e2d6b</sys_update_name>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-10-27 05:48:41</sys_updated_on>
+            <sys_user/>
+            <view display_value="Default view" name="NULL">Default view</view>
+            <view_name/>
+        </sys_ui_form>
+    </sys_ui_form_sections>
 </record_update>

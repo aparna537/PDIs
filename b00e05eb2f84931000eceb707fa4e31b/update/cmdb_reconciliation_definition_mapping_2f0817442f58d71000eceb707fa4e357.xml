@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="cmdb_reconciliation_definition_mapping">
+    <cmdb_reconciliation_definition_mapping action="INSERT_OR_UPDATE">
+        <mapped_tile>2b08d7809658d7105c04e0cfdf4ae9c3</mapped_tile>
+        <reconciliation_definition display_value="Server rule by Altiris">ab08d7802f58d71000eceb707fa4e3c3</reconciliation_definition>
+        <sys_class_name>cmdb_reconciliation_definition_mapping</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-10-28 11:23:06</sys_created_on>
+        <sys_id>2f0817442f58d71000eceb707fa4e357</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>ab08d7802f58d71000eceb707fa4e3c3</sys_name>
+        <sys_package display_value="Server Inventory - XML" source="x_2226556_server_0">b00e05eb2f84931000eceb707fa4e31b</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Server Inventory - XML">b00e05eb2f84931000eceb707fa4e31b</sys_scope>
+        <sys_update_name>cmdb_reconciliation_definition_mapping_2f0817442f58d71000eceb707fa4e357</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-10-28 11:23:06</sys_updated_on>
+    </cmdb_reconciliation_definition_mapping>
+</record_update>

@@ -1,116 +1,197 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update>
-  <sys_ui_section caption="Staging Details" section_id="0f6279de98f442ca948bffa56309a9c9" sys_domain="global" table="x_2226556_server_0_canopi_stg" view="">
-    <sys_ui_element action="INSERT_OR_UPDATE" apply_defaults="true">
-      <element>.begin_split</element>
-      <position>0</position>
-      <sys_id>119b435fc6be458dbdada08e516a1cfe</sys_id>
-      <sys_ui_formatter/>
-      <sys_ui_section caption="Staging Details" display_value="Staging Details" name="x_2226556_server_0_canopi_stg" sys_domain="global" view="Default view">0f6279de98f442ca948bffa56309a9c9</sys_ui_section>
-      <sys_user/>
-      <type>.begin_split</type>
-    </sys_ui_element>
-    <sys_ui_element action="INSERT_OR_UPDATE" apply_defaults="true">
-      <element>source_system</element>
-      <position>1</position>
-      <sys_id>35539bd9559a42288fadbd5f36d57e5e</sys_id>
-      <sys_ui_formatter/>
-      <sys_ui_section caption="Staging Details" display_value="Staging Details" name="x_2226556_server_0_canopi_stg" sys_domain="global" view="Default view">0f6279de98f442ca948bffa56309a9c9</sys_ui_section>
-      <sys_user/>
-      <type/>
-    </sys_ui_element>
-    <sys_ui_element action="INSERT_OR_UPDATE" apply_defaults="true">
-      <element>external_id</element>
-      <position>2</position>
-      <sys_id>f25a91d1005340b5a4396bf09a8ae3f5</sys_id>
-      <sys_ui_formatter/>
-      <sys_ui_section caption="Staging Details" display_value="Staging Details" name="x_2226556_server_0_canopi_stg" sys_domain="global" view="Default view">0f6279de98f442ca948bffa56309a9c9</sys_ui_section>
-      <sys_user/>
-      <type/>
-    </sys_ui_element>
-    <sys_ui_element action="INSERT_OR_UPDATE" apply_defaults="true">
-      <element>action</element>
-      <position>3</position>
-      <sys_id>988d66c1b02b4721b44dcd47f125758a</sys_id>
-      <sys_ui_formatter/>
-      <sys_ui_section caption="Staging Details" display_value="Staging Details" name="x_2226556_server_0_canopi_stg" sys_domain="global" view="Default view">0f6279de98f442ca948bffa56309a9c9</sys_ui_section>
-      <sys_user/>
-      <type/>
-    </sys_ui_element>
-    <sys_ui_element action="INSERT_OR_UPDATE" apply_defaults="true">
-      <element>sys_import_state</element>
-      <position>4</position>
-      <sys_id>627b56630d8d403db1931bf5f9b5e596</sys_id>
-      <sys_ui_formatter/>
-      <sys_ui_section caption="Staging Details" display_value="Staging Details" name="x_2226556_server_0_canopi_stg" sys_domain="global" view="Default view">0f6279de98f442ca948bffa56309a9c9</sys_ui_section>
-      <sys_user/>
-      <type/>
-    </sys_ui_element>
-    <sys_ui_element action="INSERT_OR_UPDATE" apply_defaults="true">
-      <element>.split</element>
-      <position>5</position>
-      <sys_id>73076dc945e54d319640034b8be836b8</sys_id>
-      <sys_ui_formatter/>
-      <sys_ui_section caption="Staging Details" display_value="Staging Details" name="x_2226556_server_0_canopi_stg" sys_domain="global" view="Default view">0f6279de98f442ca948bffa56309a9c9</sys_ui_section>
-      <sys_user/>
-      <type>.split</type>
-    </sys_ui_element>
-    <sys_ui_element action="INSERT_OR_UPDATE" apply_defaults="true">
-      <element>correlation_id</element>
-      <position>6</position>
-      <sys_id>cb20f0a0a33f42b293f5f084490d26ed</sys_id>
-      <sys_ui_formatter/>
-      <sys_ui_section caption="Staging Details" display_value="Staging Details" name="x_2226556_server_0_canopi_stg" sys_domain="global" view="Default view">0f6279de98f442ca948bffa56309a9c9</sys_ui_section>
-      <sys_user/>
-      <type/>
-    </sys_ui_element>
-    <sys_ui_element action="INSERT_OR_UPDATE" apply_defaults="true">
-      <element>integration_user</element>
-      <position>7</position>
-      <sys_id>3a34585a46c1462fba07f2ece4b88a83</sys_id>
-      <sys_ui_formatter/>
-      <sys_ui_section caption="Staging Details" display_value="Staging Details" name="x_2226556_server_0_canopi_stg" sys_domain="global" view="Default view">0f6279de98f442ca948bffa56309a9c9</sys_ui_section>
-      <sys_user/>
-      <type/>
-    </sys_ui_element>
-    <sys_ui_element action="INSERT_OR_UPDATE" apply_defaults="true">
-      <element>translated_event</element>
-      <position>8</position>
-      <sys_id>eb328e00c0094756889fa31dfd974393</sys_id>
-      <sys_ui_formatter/>
-      <sys_ui_section caption="Staging Details" display_value="Staging Details" name="x_2226556_server_0_canopi_stg" sys_domain="global" view="Default view">0f6279de98f442ca948bffa56309a9c9</sys_ui_section>
-      <sys_user/>
-      <type/>
-    </sys_ui_element>
-    <sys_ui_element action="INSERT_OR_UPDATE" apply_defaults="true">
-      <element>http_response_code</element>
-      <position>9</position>
-      <sys_id>efa18d49d6d8411ab822ec56d61b4a3c</sys_id>
-      <sys_ui_formatter/>
-      <sys_ui_section caption="Staging Details" display_value="Staging Details" name="x_2226556_server_0_canopi_stg" sys_domain="global" view="Default view">0f6279de98f442ca948bffa56309a9c9</sys_ui_section>
-      <sys_user/>
-      <type/>
-    </sys_ui_element>
-    <sys_ui_element action="INSERT_OR_UPDATE" apply_defaults="true">
-      <element>.end_split</element>
-      <position>10</position>
-      <sys_id>9e323b97ca12471380db2797a273d66e</sys_id>
-      <sys_ui_formatter/>
-      <sys_ui_section caption="Staging Details" display_value="Staging Details" name="x_2226556_server_0_canopi_stg" sys_domain="global" view="Default view">0f6279de98f442ca948bffa56309a9c9</sys_ui_section>
-      <sys_user/>
-      <type>.end_split</type>
-    </sys_ui_element>
-    <sys_ui_section action="INSERT_OR_UPDATE" apply_defaults="true">
-      <caption>Staging Details</caption>
-      <header>false</header>
-      <name>x_2226556_server_0_canopi_stg</name>
-      <roles/>
-      <sys_domain>global</sys_domain>
-      <sys_id>0f6279de98f442ca948bffa56309a9c9</sys_id>
-      <sys_scope display_value="x_2226556_server_0">b00e05eb2f84931000eceb707fa4e31b</sys_scope>
-      <sys_user/>
-      <title>false</title>
-      <view_name/>
-      <view display_value="Default view" name="NULL">Default view</view>
+    <sys_ui_section caption="Staging Details" section_id="0f6279de98f442ca948bffa56309a9c9" sys_domain="global" table="x_2226556_server_0_canopi_stg" version="3" view="">
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>.begin_split</element>
+            <position>0</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-10-27 10:33:44</sys_created_on>
+            <sys_id>119b435fc6be458dbdada08e516a1cfe</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Staging Details" display_value="Staging Details" name="x_2226556_server_0_canopi_stg" sys_domain="global" view="Default view">0f6279de98f442ca948bffa56309a9c9</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-10-27 10:33:44</sys_updated_on>
+            <sys_user/>
+            <type>.begin_split</type>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>source_system</element>
+            <position>1</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-10-27 10:33:44</sys_created_on>
+            <sys_id>35539bd9559a42288fadbd5f36d57e5e</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Staging Details" display_value="Staging Details" name="x_2226556_server_0_canopi_stg" sys_domain="global" view="Default view">0f6279de98f442ca948bffa56309a9c9</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-10-27 10:33:44</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>external_id</element>
+            <position>2</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-10-27 10:33:44</sys_created_on>
+            <sys_id>f25a91d1005340b5a4396bf09a8ae3f5</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Staging Details" display_value="Staging Details" name="x_2226556_server_0_canopi_stg" sys_domain="global" view="Default view">0f6279de98f442ca948bffa56309a9c9</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-10-27 10:33:44</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>action</element>
+            <position>3</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-10-27 10:33:44</sys_created_on>
+            <sys_id>988d66c1b02b4721b44dcd47f125758a</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Staging Details" display_value="Staging Details" name="x_2226556_server_0_canopi_stg" sys_domain="global" view="Default view">0f6279de98f442ca948bffa56309a9c9</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-10-27 10:33:44</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>sys_import_state</element>
+            <position>4</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-10-27 10:33:44</sys_created_on>
+            <sys_id>627b56630d8d403db1931bf5f9b5e596</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Staging Details" display_value="Staging Details" name="x_2226556_server_0_canopi_stg" sys_domain="global" view="Default view">0f6279de98f442ca948bffa56309a9c9</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-10-27 10:33:44</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>.split</element>
+            <position>5</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-10-27 10:33:44</sys_created_on>
+            <sys_id>73076dc945e54d319640034b8be836b8</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Staging Details" display_value="Staging Details" name="x_2226556_server_0_canopi_stg" sys_domain="global" view="Default view">0f6279de98f442ca948bffa56309a9c9</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-10-27 10:33:44</sys_updated_on>
+            <sys_user/>
+            <type>.split</type>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>correlation_id</element>
+            <position>6</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-10-27 10:33:44</sys_created_on>
+            <sys_id>cb20f0a0a33f42b293f5f084490d26ed</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Staging Details" display_value="Staging Details" name="x_2226556_server_0_canopi_stg" sys_domain="global" view="Default view">0f6279de98f442ca948bffa56309a9c9</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-10-27 10:33:44</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>integration_user</element>
+            <position>7</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-10-27 10:33:44</sys_created_on>
+            <sys_id>3a34585a46c1462fba07f2ece4b88a83</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Staging Details" display_value="Staging Details" name="x_2226556_server_0_canopi_stg" sys_domain="global" view="Default view">0f6279de98f442ca948bffa56309a9c9</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-10-27 10:33:44</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>translated_event</element>
+            <position>8</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-10-27 10:33:44</sys_created_on>
+            <sys_id>eb328e00c0094756889fa31dfd974393</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Staging Details" display_value="Staging Details" name="x_2226556_server_0_canopi_stg" sys_domain="global" view="Default view">0f6279de98f442ca948bffa56309a9c9</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-10-27 10:33:44</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>http_response_code</element>
+            <position>9</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-10-27 10:33:44</sys_created_on>
+            <sys_id>efa18d49d6d8411ab822ec56d61b4a3c</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Staging Details" display_value="Staging Details" name="x_2226556_server_0_canopi_stg" sys_domain="global" view="Default view">0f6279de98f442ca948bffa56309a9c9</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-10-27 10:33:44</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>.end_split</element>
+            <position>10</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-10-27 10:33:44</sys_created_on>
+            <sys_id>9e323b97ca12471380db2797a273d66e</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Staging Details" display_value="Staging Details" name="x_2226556_server_0_canopi_stg" sys_domain="global" view="Default view">0f6279de98f442ca948bffa56309a9c9</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-10-27 10:33:44</sys_updated_on>
+            <sys_user/>
+            <type>.end_split</type>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>state</element>
+            <position>11</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-10-28 05:09:11</sys_created_on>
+            <sys_id>da7246402f9c971000eceb707fa4e395</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Staging Details" display_value="Staging Details" name="x_2226556_server_0_canopi_stg" sys_domain="global" view="Default view">0f6279de98f442ca948bffa56309a9c9</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-10-28 05:09:11</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_section action="INSERT_OR_UPDATE">
+            <caption>Staging Details</caption>
+            <header>false</header>
+            <name>x_2226556_server_0_canopi_stg</name>
+            <roles/>
+            <sys_class_name>sys_ui_section</sys_class_name>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-10-27 05:48:42</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>0f6279de98f442ca948bffa56309a9c9</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>x_2226556_server_0_canopi_stg</sys_name>
+            <sys_overrides/>
+            <sys_package display_value="Server Inventory - XML" source="x_2226556_server_0">b00e05eb2f84931000eceb707fa4e31b</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="Server Inventory - XML">b00e05eb2f84931000eceb707fa4e31b</sys_scope>
+            <sys_update_name>sys_ui_section_0f6279de98f442ca948bffa56309a9c9</sys_update_name>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-10-27 05:48:42</sys_updated_on>
+            <sys_user/>
+            <title>false</title>
+            <view display_value="Default view" name="NULL">Default view</view>
+            <view_name/>
+        </sys_ui_section>
     </sys_ui_section>
-  </sys_ui_section>
 </record_update>

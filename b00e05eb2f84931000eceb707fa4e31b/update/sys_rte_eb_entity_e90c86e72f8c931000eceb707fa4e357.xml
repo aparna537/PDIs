@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_rte_eb_entity">
+    <sys_rte_eb_entity action="INSERT_OR_UPDATE">
+        <child_id_field/>
+        <name>Server CI</name>
+        <parent_entity/>
+        <parent_id_field/>
+        <path/>
+        <sys_class_name>sys_rte_eb_entity</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-10-26 16:36:47</sys_created_on>
+        <sys_id>e90c86e72f8c931000eceb707fa4e357</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Server CI</sys_name>
+        <sys_package display_value="Server Inventory - XML" source="x_2226556_server_0">b00e05eb2f84931000eceb707fa4e31b</sys_package>
+        <sys_policy/>
+        <sys_rte_eb_definition display_value="CANOPI Server Transform">421b0a672f8c931000eceb707fa4e343</sys_rte_eb_definition>
+        <sys_scope display_value="Server Inventory - XML">b00e05eb2f84931000eceb707fa4e31b</sys_scope>
+        <sys_update_name>sys_rte_eb_entity_e90c86e72f8c931000eceb707fa4e357</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-10-26 16:36:47</sys_updated_on>
+        <table>cmdb_ci_server</table>
+    </sys_rte_eb_entity>
+</record_update>

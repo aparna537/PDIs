@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element attributes="enforce_dot_walk_cross_scope_access=true" db_object_id="2f3d5fa20a334e50807eb77b25303cf4" label="Vendor Turn Key" name="x_2226556_server_0_vendor_turn" type="collection">
+        <element label="VTK Comments" max_length="4000" name="vtk_comments" type="string"/>
+        <element label="VTK Date" name="vtk_date" type="glide_date"/>
+        <element label="VTK" name="vtk_ind" type="boolean"/>
+        <element label="VTK Verifier" name="vtk_verifier" reference="sys_user" type="reference"/>
+        <element label="Server Reference" name="server_reference" reference="cmdb_ci_server" type="reference"/>
+        <element label="VTK Vendor" name="vtk_vendor" reference="core_company" type="reference"/>
+        <index name="index">
+            <element name="server_reference"/>
+        </index>
+        <index name="index2">
+            <element name="vtk_vendor"/>
+        </index>
+        <index name="index3">
+            <element name="vtk_verifier"/>
+        </index>
+    </element>
+</database>

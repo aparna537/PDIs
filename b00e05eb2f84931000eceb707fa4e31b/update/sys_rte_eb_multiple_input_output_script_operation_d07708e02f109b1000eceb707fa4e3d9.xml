@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_rte_eb_multiple_input_output_script_operation">
+    <sys_rte_eb_multiple_input_output_script_operation action="INSERT_OR_UPDATE">
+        <conditional_fields/>
+        <conditional_script><![CDATA[/* Example Script
+(function(batch, output) {
+    for (var i = 0; i < batch.length; i++) {
+        
+        // step1: access the input variables
+        var a = batch[i].input;
+
+        // step2: your script code goes here
+        // based on the input variables assign variable 'b' to true or false.
+        var b = true; // or false;
+
+        // step3: set the output for each element
+        output[i] = b;
+    }
+})(batch, output);
+*/
+(function(batch, output) {
+    // add your code here
+    
+})(batch, output);]]></conditional_script>
+        <is_conditional>false</is_conditional>
+        <name>STG to Target</name>
+        <operation_group/>
+        <order>100</order>
+        <script><![CDATA[/* Example Script 
+ // In this example the script input fields are 'field1', 'field2' - replace these with the fields used as script inputs // There is a static field 'input' that has all the input field values concatenated with a '|' 
+ (function(batch, output) {
+     for (var i = 0; i < batch.length; i++) {
+ 
+         //step1: access the input variables
+         var a = batch[i].field1; //Value of the first source field. 
+         var b = batch[i].field2; //Value of the second source field. 
+ 
+         //step2: Your script/code goes here.
+         var c = a + b;
+ 
+         //step3: set the output for each elements
+         // In this example, 'field3', 'field4' are the target fields
+         // Address output fields akin to input fields
+         output[i].field3 = b;
+         output[i].field4 = c;
+     }
+ 
+ })(batch, output);
+ */
+
+(function(batch, output) {
+    for (var i = 0; i < batch.length; i++) {
+        var a = batch[i].u_payload;
+        gs.info('fqdn 1check parse a - ' + a);
+        var c = JSON.parse(a);
+
+        output[i].serial_number = c.servers[0].serialNumber;
+        output[i].fqdn = c.servers[0].hostName + '.' + c.servers[0].dnsDomain;
+		output[i].host_name = c.servers[0].hostName;
+		output[i].dns_domain = c.servers[0].dnsDomain;
+		output[i].name = c.servers[0].hostName;
+		output[i].discovery_source = c.sourceSystem;
+        gs.info('fqdn 2 output serial number - ' + output[i].serial_number);
+		gs.info('fqdn 2 output fqdn - ' + output[i].fqdn);
+		gs.info('fqdn 2 output host name - ' + output[i].host_name);
+		gs.info('fqdn 2 output dns domain - ' + output[i].dns_domain);
+		gs.info('fqdn 2 output name - ' + output[i].name);
+		gs.info('fqdn 2 output discovery source - ' + output[i].discovery_source);
+    }
+})(batch, output);]]></script>
+        <source_sys_rte_eb_field/>
+        <source_sys_rte_eb_fields>f29733d02f9c5b1000eceb707fa4e3dd</source_sys_rte_eb_fields>
+        <sys_class_name>sys_rte_eb_multiple_input_output_script_operation</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-10-29 09:29:20</sys_created_on>
+        <sys_id>d07708e02f109b1000eceb707fa4e3d9</sys_id>
+        <sys_mod_count>10</sys_mod_count>
+        <sys_name>STG to Target</sys_name>
+        <sys_package display_value="Server Inventory - XML" source="x_2226556_server_0">b00e05eb2f84931000eceb707fa4e31b</sys_package>
+        <sys_policy/>
+        <sys_rte_eb_definition display_value="Server CR Data Ingestion">5c97bb902f9c5b1000eceb707fa4e3cf</sys_rte_eb_definition>
+        <sys_rte_eb_entity display_value="temp">3297fbdc2f5c5b1000eceb707fa4e359</sys_rte_eb_entity>
+        <sys_scope display_value="Server Inventory - XML">b00e05eb2f84931000eceb707fa4e31b</sys_scope>
+        <sys_update_name>sys_rte_eb_multiple_input_output_script_operation_d07708e02f109b1000eceb707fa4e3d9</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-10-29 13:36:49</sys_updated_on>
+        <target_sys_rte_eb_field/>
+        <target_sys_rte_eb_fields>62c744242f109b1000eceb707fa4e314,dba700242f109b1000eceb707fa4e3a9,7f81dc282f509b1000eceb707fa4e34e,5361d8282f509b1000eceb707fa4e36c,e613102c2f509b1000eceb707fa4e3a3</target_sys_rte_eb_fields>
+        <type display_value="Multiple Input/Output Script">6557c22387613010e04358d8f6cb0bcd</type>
+        <use_unique_input_sets>true</use_unique_input_sets>
+    </sys_rte_eb_multiple_input_output_script_operation>
+</record_update>

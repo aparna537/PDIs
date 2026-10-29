@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element attributes="enforce_dot_walk_cross_scope_access=true" db_object_id="4998e58baa3144a09d9d257b51ff13bd" label="System Type Values" name="x_2226556_server_0_sys_type_val" type="collection">
+        <element default="true" label="Active" name="active" type="boolean"/>
+        <element label="Description" max_length="255" name="description" type="string"/>
+        <element display="true" label="Name" mandatory="true" max_length="100" name="name" type="string"/>
+    </element>
+</database>

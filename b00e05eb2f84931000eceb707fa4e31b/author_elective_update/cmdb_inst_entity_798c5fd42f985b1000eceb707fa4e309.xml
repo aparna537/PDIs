@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="cmdb_inst_entity">
+    <cmdb_inst_entity action="DELETE">
+        <child_id_field/>
+        <lookup_for_entity/>
+        <name>Import</name>
+        <parent_entity/>
+        <parent_id_field/>
+        <path/>
+        <related_for_entity/>
+        <relationship_type/>
+        <sys_class_name>cmdb_inst_entity</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-10-29 06:21:08</sys_created_on>
+        <sys_id>798c5fd42f985b1000eceb707fa4e309</sys_id>
+        <sys_mod_count>3</sys_mod_count>
+        <sys_name>Import</sys_name>
+        <sys_package display_value="Server Inventory - XML" source="x_2226556_server_0">b00e05eb2f84931000eceb707fa4e31b</sys_package>
+        <sys_policy/>
+        <sys_rte_eb_definition display_value="Server Ingestion">0c8cdbd42f985b1000eceb707fa4e3d0</sys_rte_eb_definition>
+        <sys_scope display_value="Server Inventory - XML">b00e05eb2f84931000eceb707fa4e31b</sys_scope>
+        <sys_update_name>cmdb_inst_entity_798c5fd42f985b1000eceb707fa4e309</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-10-29 08:09:42</sys_updated_on>
+        <table>x_2226556_server_0_cloud_data_ingestion</table>
+    </cmdb_inst_entity>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="Server Inventory - XML">b00e05eb2f84931000eceb707fa4e31b</application>
+        <file_path/>
+        <instance_id>c01cba4393310b1cd9f6ddd548373c08</instance_id>
+        <instance_name>dev423202</instance_name>
+        <name>cmdb_inst_entity_798c5fd42f985b1000eceb707fa4e309</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="cmdb_inst_entity"><cmdb_inst_entity action="INSERT_OR_UPDATE"><child_id_field/><lookup_for_entity/><name>Import</name><parent_entity/><parent_id_field/><path/><related_for_entity/><relationship_type/><sys_class_name>cmdb_inst_entity</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2026-10-29 06:21:08</sys_created_on><sys_id>798c5fd42f985b1000eceb707fa4e309</sys_id><sys_mod_count>3</sys_mod_count><sys_name>Import</sys_name><sys_package display_value="Server Inventory - XML" source="x_2226556_server_0">b00e05eb2f84931000eceb707fa4e31b</sys_package><sys_policy/><sys_rte_eb_definition display_value="Server Ingestion">0c8cdbd42f985b1000eceb707fa4e3d0</sys_rte_eb_definition><sys_scope display_value="Server Inventory - XML">b00e05eb2f84931000eceb707fa4e31b</sys_scope><sys_update_name>cmdb_inst_entity_798c5fd42f985b1000eceb707fa4e309</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2026-10-29 08:09:42</sys_updated_on><table>x_2226556_server_0_cloud_data_ingestion</table></cmdb_inst_entity></record_update>]]></payload>
+        <payload_hash>358745069</payload_hash>
+        <record_name>Import</record_name>
+        <reverted_from/>
+        <source>3c0e05eb2f84931000eceb707fa4e349</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-10-29 08:09:42</sys_created_on>
+        <sys_id>5865339c2f5c5b1000eceb707fa4e33d</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>1a186b529c40000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-10-29 08:09:42</sys_updated_on>
+        <type>CMDB Integration Studio Entity</type>
+        <update_guid>5c65339c815c5b1047d42a24fe86130a</update_guid>
+        <update_guid_history>5c65339c815c5b1047d42a24fe86130a:358745069,3c93bb58d45c5b100cc14c8725cc0d35:-2096700740,4463a79447d85b10b0a6b871a4960196:1280837418,7d8c5fd4e9985b105372e3afae52540c:-1907325625</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete display_value="Import">7467f7902f9c5b1000eceb707fa4e3d2</sys_audit_delete>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-10-29 08:18:31</sys_created_on>
+        <sys_db_object display_value="" name="cmdb_inst_entity">cmdb_inst_entity</sys_db_object>
+        <sys_id>281f70f7a3544192a39dc755e0efa9e4</sys_id>
+        <sys_metadata>798c5fd42f985b1000eceb707fa4e309</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Import</sys_name>
+        <sys_package display_value="Server Inventory - XML" source="x_2226556_server_0">b00e05eb2f84931000eceb707fa4e31b</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="Server Inventory - XML">b00e05eb2f84931000eceb707fa4e31b</sys_scope>
+        <sys_scope_delete display_value="">7e6f18085a5d403484d2ad3504a6a279</sys_scope_delete>
+        <sys_update_name>cmdb_inst_entity_798c5fd42f985b1000eceb707fa4e309</sys_update_name>
+        <sys_update_version display_value="cmdb_inst_entity_798c5fd42f985b1000eceb707fa4e309">5865339c2f5c5b1000eceb707fa4e33d</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-10-29 08:18:31</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

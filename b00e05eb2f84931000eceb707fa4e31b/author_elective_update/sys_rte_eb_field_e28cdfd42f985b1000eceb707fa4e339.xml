@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_rte_eb_field">
+    <sys_rte_eb_field action="DELETE">
+        <field>u_vtkindicator</field>
+        <name>u_vtkindicator</name>
+        <sys_class_name>sys_rte_eb_field</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-10-29 06:21:10</sys_created_on>
+        <sys_id>e28cdfd42f985b1000eceb707fa4e339</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>u_vtkindicator</sys_name>
+        <sys_package display_value="Server Inventory - XML" source="x_2226556_server_0">b00e05eb2f84931000eceb707fa4e31b</sys_package>
+        <sys_policy/>
+        <sys_rte_eb_definition display_value="Server Ingestion">0c8cdbd42f985b1000eceb707fa4e3d0</sys_rte_eb_definition>
+        <sys_rte_eb_entity display_value="temp">7d8c5fd42f985b1000eceb707fa4e30e</sys_rte_eb_entity>
+        <sys_scope display_value="Server Inventory - XML">b00e05eb2f84931000eceb707fa4e31b</sys_scope>
+        <sys_update_name>sys_rte_eb_field_e28cdfd42f985b1000eceb707fa4e339</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-10-29 06:21:10</sys_updated_on>
+    </sys_rte_eb_field>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="Server Inventory - XML">b00e05eb2f84931000eceb707fa4e31b</application>
+        <file_path/>
+        <instance_id>c01cba4393310b1cd9f6ddd548373c08</instance_id>
+        <instance_name>dev423202</instance_name>
+        <name>sys_rte_eb_field_e28cdfd42f985b1000eceb707fa4e339</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_rte_eb_field"><sys_rte_eb_field action="INSERT_OR_UPDATE"><field>u_vtkindicator</field><name>u_vtkindicator</name><sys_class_name>sys_rte_eb_field</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2026-10-29 06:21:10</sys_created_on><sys_id>e28cdfd42f985b1000eceb707fa4e339</sys_id><sys_mod_count>0</sys_mod_count><sys_name>u_vtkindicator</sys_name><sys_package display_value="Server Inventory - XML" source="x_2226556_server_0">b00e05eb2f84931000eceb707fa4e31b</sys_package><sys_policy/><sys_rte_eb_definition display_value="Server Ingestion">0c8cdbd42f985b1000eceb707fa4e3d0</sys_rte_eb_definition><sys_rte_eb_entity display_value="temp">7d8c5fd42f985b1000eceb707fa4e30e</sys_rte_eb_entity><sys_scope display_value="Server Inventory - XML">b00e05eb2f84931000eceb707fa4e31b</sys_scope><sys_update_name>sys_rte_eb_field_e28cdfd42f985b1000eceb707fa4e339</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2026-10-29 06:21:10</sys_updated_on></sys_rte_eb_field></record_update>]]></payload>
+        <payload_hash>915822916</payload_hash>
+        <record_name>u_vtkindicator</record_name>
+        <reverted_from/>
+        <source>3c0e05eb2f84931000eceb707fa4e349</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-10-29 06:21:10</sys_created_on>
+        <sys_id>268cdfd42f985b1000eceb707fa4e33c</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>1a18651ce340000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-10-29 06:21:10</sys_updated_on>
+        <type>RTE Entity Field</type>
+        <update_guid>e28cdfd4c7985b10c365c999911a1a3b</update_guid>
+        <update_guid_history>e28cdfd4c7985b10c365c999911a1a3b:915822916</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-10-29 08:18:28</sys_created_on>
+        <sys_db_object display_value="" name="sys_rte_eb_field">sys_rte_eb_field</sys_db_object>
+        <sys_id>166cbc31e69e4db0990c2f4074cebf44</sys_id>
+        <sys_metadata>e28cdfd42f985b1000eceb707fa4e339</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>u_vtkindicator</sys_name>
+        <sys_package display_value="Server Inventory - XML" source="x_2226556_server_0">b00e05eb2f84931000eceb707fa4e31b</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="Server Inventory - XML">b00e05eb2f84931000eceb707fa4e31b</sys_scope>
+        <sys_scope_delete display_value="">7e6f18085a5d403484d2ad3504a6a279</sys_scope_delete>
+        <sys_update_name>sys_rte_eb_field_e28cdfd42f985b1000eceb707fa4e339</sys_update_name>
+        <sys_update_version display_value="sys_rte_eb_field_e28cdfd42f985b1000eceb707fa4e339">268cdfd42f985b1000eceb707fa4e33c</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-10-29 08:18:28</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

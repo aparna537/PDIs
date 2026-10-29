@@ -1,134 +1,211 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update>
-  <sys_ui_section caption="Server Meta Data" section_id="892cbb46a7014d76a99d88ab6810b046" sys_domain="global" table="x_2226556_server_0_server_meta" view="">
-    <sys_ui_element action="INSERT_OR_UPDATE" apply_defaults="true">
-      <element>.begin_split</element>
-      <position>0</position>
-      <sys_id>b18ce89be8da4397879899737aa0f3bc</sys_id>
-      <sys_ui_formatter/>
-      <sys_ui_section caption="Server Meta Data" display_value="Server Meta Data" name="x_2226556_server_0_server_meta" sys_domain="global" view="Default view">892cbb46a7014d76a99d88ab6810b046</sys_ui_section>
-      <sys_user/>
-      <type>.begin_split</type>
-    </sys_ui_element>
-    <sys_ui_element action="INSERT_OR_UPDATE" apply_defaults="true">
-      <element>server_reference</element>
-      <position>1</position>
-      <sys_id>4d93300271b946b4a68d2c33b7098957</sys_id>
-      <sys_ui_formatter/>
-      <sys_ui_section caption="Server Meta Data" display_value="Server Meta Data" name="x_2226556_server_0_server_meta" sys_domain="global" view="Default view">892cbb46a7014d76a99d88ab6810b046</sys_ui_section>
-      <sys_user/>
-      <type/>
-    </sys_ui_element>
-    <sys_ui_element action="INSERT_OR_UPDATE" apply_defaults="true">
-      <element>system_type</element>
-      <position>2</position>
-      <sys_id>d2dcd55d99f24f11b5df81cd2e087c21</sys_id>
-      <sys_ui_formatter/>
-      <sys_ui_section caption="Server Meta Data" display_value="Server Meta Data" name="x_2226556_server_0_server_meta" sys_domain="global" view="Default view">892cbb46a7014d76a99d88ab6810b046</sys_ui_section>
-      <sys_user/>
-      <type/>
-    </sys_ui_element>
-    <sys_ui_element action="INSERT_OR_UPDATE" apply_defaults="true">
-      <element>slot</element>
-      <position>3</position>
-      <sys_id>8f7b7ba3d991442c949abb39d919b43c</sys_id>
-      <sys_ui_formatter/>
-      <sys_ui_section caption="Server Meta Data" display_value="Server Meta Data" name="x_2226556_server_0_server_meta" sys_domain="global" view="Default view">892cbb46a7014d76a99d88ab6810b046</sys_ui_section>
-      <sys_user/>
-      <type/>
-    </sys_ui_element>
-    <sys_ui_element action="INSERT_OR_UPDATE" apply_defaults="true">
-      <element>room</element>
-      <position>4</position>
-      <sys_id>49ca5d8a4297471eb3dd3813d6907e7c</sys_id>
-      <sys_ui_formatter/>
-      <sys_ui_section caption="Server Meta Data" display_value="Server Meta Data" name="x_2226556_server_0_server_meta" sys_domain="global" view="Default view">892cbb46a7014d76a99d88ab6810b046</sys_ui_section>
-      <sys_user/>
-      <type/>
-    </sys_ui_element>
-    <sys_ui_element action="INSERT_OR_UPDATE" apply_defaults="true">
-      <element>floor</element>
-      <position>5</position>
-      <sys_id>f2187540135d4e3b9ca5a79fbad88f6b</sys_id>
-      <sys_ui_formatter/>
-      <sys_ui_section caption="Server Meta Data" display_value="Server Meta Data" name="x_2226556_server_0_server_meta" sys_domain="global" view="Default view">892cbb46a7014d76a99d88ab6810b046</sys_ui_section>
-      <sys_user/>
-      <type/>
-    </sys_ui_element>
-    <sys_ui_element action="INSERT_OR_UPDATE" apply_defaults="true">
-      <element>.split</element>
-      <position>6</position>
-      <sys_id>82344b8d3d684b0592ebd631cb43de2a</sys_id>
-      <sys_ui_formatter/>
-      <sys_ui_section caption="Server Meta Data" display_value="Server Meta Data" name="x_2226556_server_0_server_meta" sys_domain="global" view="Default view">892cbb46a7014d76a99d88ab6810b046</sys_ui_section>
-      <sys_user/>
-      <type>.split</type>
-    </sys_ui_element>
-    <sys_ui_element action="INSERT_OR_UPDATE" apply_defaults="true">
-      <element>self_support</element>
-      <position>7</position>
-      <sys_id>2f0a6166f1ee44adacce6cc9f3fe7145</sys_id>
-      <sys_ui_formatter/>
-      <sys_ui_section caption="Server Meta Data" display_value="Server Meta Data" name="x_2226556_server_0_server_meta" sys_domain="global" view="Default view">892cbb46a7014d76a99d88ab6810b046</sys_ui_section>
-      <sys_user/>
-      <type/>
-    </sys_ui_element>
-    <sys_ui_element action="INSERT_OR_UPDATE" apply_defaults="true">
-      <element>cmdb_workgroup</element>
-      <position>8</position>
-      <sys_id>e9fe57de5f1648ec809a7fa0632b9fb4</sys_id>
-      <sys_ui_formatter/>
-      <sys_ui_section caption="Server Meta Data" display_value="Server Meta Data" name="x_2226556_server_0_server_meta" sys_domain="global" view="Default view">892cbb46a7014d76a99d88ab6810b046</sys_ui_section>
-      <sys_user/>
-      <type/>
-    </sys_ui_element>
-    <sys_ui_element action="INSERT_OR_UPDATE" apply_defaults="true">
-      <element>primary_sa_user_reference</element>
-      <position>9</position>
-      <sys_id>fa0e45e505034c12bd16862c730eed0c</sys_id>
-      <sys_ui_formatter/>
-      <sys_ui_section caption="Server Meta Data" display_value="Server Meta Data" name="x_2226556_server_0_server_meta" sys_domain="global" view="Default view">892cbb46a7014d76a99d88ab6810b046</sys_ui_section>
-      <sys_user/>
-      <type/>
-    </sys_ui_element>
-    <sys_ui_element action="INSERT_OR_UPDATE" apply_defaults="true">
-      <element>secondary_sa_user_reference</element>
-      <position>10</position>
-      <sys_id>1d5fc4ccada74cbf9fac0bc62a160832</sys_id>
-      <sys_ui_formatter/>
-      <sys_ui_section caption="Server Meta Data" display_value="Server Meta Data" name="x_2226556_server_0_server_meta" sys_domain="global" view="Default view">892cbb46a7014d76a99d88ab6810b046</sys_ui_section>
-      <sys_user/>
-      <type/>
-    </sys_ui_element>
-    <sys_ui_element action="INSERT_OR_UPDATE" apply_defaults="true">
-      <element>grid</element>
-      <position>11</position>
-      <sys_id>dd5df62648e14cd8a29f8b1f76fe1e25</sys_id>
-      <sys_ui_formatter/>
-      <sys_ui_section caption="Server Meta Data" display_value="Server Meta Data" name="x_2226556_server_0_server_meta" sys_domain="global" view="Default view">892cbb46a7014d76a99d88ab6810b046</sys_ui_section>
-      <sys_user/>
-      <type/>
-    </sys_ui_element>
-    <sys_ui_element action="INSERT_OR_UPDATE" apply_defaults="true">
-      <element>.end_split</element>
-      <position>12</position>
-      <sys_id>8c7b797a368c4e35aa23f3a064880a52</sys_id>
-      <sys_ui_formatter/>
-      <sys_ui_section caption="Server Meta Data" display_value="Server Meta Data" name="x_2226556_server_0_server_meta" sys_domain="global" view="Default view">892cbb46a7014d76a99d88ab6810b046</sys_ui_section>
-      <sys_user/>
-      <type>.end_split</type>
-    </sys_ui_element>
-    <sys_ui_section action="INSERT_OR_UPDATE" apply_defaults="true">
-      <caption>Server Meta Data</caption>
-      <header>false</header>
-      <name>x_2226556_server_0_server_meta</name>
-      <roles/>
-      <sys_domain>global</sys_domain>
-      <sys_id>892cbb46a7014d76a99d88ab6810b046</sys_id>
-      <sys_scope display_value="x_2226556_server_0">b00e05eb2f84931000eceb707fa4e31b</sys_scope>
-      <sys_user/>
-      <title>false</title>
-      <view_name/>
-      <view display_value="Default view" name="NULL">Default view</view>
+    <sys_ui_section caption="Server Meta Data" section_id="892cbb46a7014d76a99d88ab6810b046" sys_domain="global" table="x_2226556_server_0_server_meta" version="3" view="">
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>.begin_split</element>
+            <position>0</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-10-27 10:33:45</sys_created_on>
+            <sys_id>b18ce89be8da4397879899737aa0f3bc</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Server Meta Data" display_value="Server Meta Data" name="x_2226556_server_0_server_meta" sys_domain="global" view="Default view">892cbb46a7014d76a99d88ab6810b046</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-10-27 10:33:45</sys_updated_on>
+            <sys_user/>
+            <type>.begin_split</type>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>server_reference</element>
+            <position>1</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-10-27 10:33:45</sys_created_on>
+            <sys_id>4d93300271b946b4a68d2c33b7098957</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Server Meta Data" display_value="Server Meta Data" name="x_2226556_server_0_server_meta" sys_domain="global" view="Default view">892cbb46a7014d76a99d88ab6810b046</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-10-27 10:33:45</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>system_type</element>
+            <position>2</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-10-27 10:33:45</sys_created_on>
+            <sys_id>d2dcd55d99f24f11b5df81cd2e087c21</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Server Meta Data" display_value="Server Meta Data" name="x_2226556_server_0_server_meta" sys_domain="global" view="Default view">892cbb46a7014d76a99d88ab6810b046</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-10-27 10:33:45</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>slot</element>
+            <position>3</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-10-27 10:33:45</sys_created_on>
+            <sys_id>8f7b7ba3d991442c949abb39d919b43c</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Server Meta Data" display_value="Server Meta Data" name="x_2226556_server_0_server_meta" sys_domain="global" view="Default view">892cbb46a7014d76a99d88ab6810b046</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-10-27 10:33:45</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>room</element>
+            <position>4</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-10-27 10:33:45</sys_created_on>
+            <sys_id>49ca5d8a4297471eb3dd3813d6907e7c</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Server Meta Data" display_value="Server Meta Data" name="x_2226556_server_0_server_meta" sys_domain="global" view="Default view">892cbb46a7014d76a99d88ab6810b046</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-10-27 10:33:45</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>floor</element>
+            <position>5</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-10-27 10:33:45</sys_created_on>
+            <sys_id>f2187540135d4e3b9ca5a79fbad88f6b</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Server Meta Data" display_value="Server Meta Data" name="x_2226556_server_0_server_meta" sys_domain="global" view="Default view">892cbb46a7014d76a99d88ab6810b046</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-10-27 10:33:45</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>.split</element>
+            <position>6</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-10-27 10:33:45</sys_created_on>
+            <sys_id>82344b8d3d684b0592ebd631cb43de2a</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Server Meta Data" display_value="Server Meta Data" name="x_2226556_server_0_server_meta" sys_domain="global" view="Default view">892cbb46a7014d76a99d88ab6810b046</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-10-27 10:33:45</sys_updated_on>
+            <sys_user/>
+            <type>.split</type>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>self_support</element>
+            <position>7</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-10-27 10:33:45</sys_created_on>
+            <sys_id>2f0a6166f1ee44adacce6cc9f3fe7145</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Server Meta Data" display_value="Server Meta Data" name="x_2226556_server_0_server_meta" sys_domain="global" view="Default view">892cbb46a7014d76a99d88ab6810b046</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-10-27 10:33:45</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>cmdb_workgroup</element>
+            <position>8</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-10-27 10:33:45</sys_created_on>
+            <sys_id>e9fe57de5f1648ec809a7fa0632b9fb4</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Server Meta Data" display_value="Server Meta Data" name="x_2226556_server_0_server_meta" sys_domain="global" view="Default view">892cbb46a7014d76a99d88ab6810b046</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-10-27 10:33:45</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>primary_sa_user_reference</element>
+            <position>9</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-10-27 10:33:45</sys_created_on>
+            <sys_id>fa0e45e505034c12bd16862c730eed0c</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Server Meta Data" display_value="Server Meta Data" name="x_2226556_server_0_server_meta" sys_domain="global" view="Default view">892cbb46a7014d76a99d88ab6810b046</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-10-27 10:33:45</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>secondary_sa_user_reference</element>
+            <position>10</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-10-27 10:33:45</sys_created_on>
+            <sys_id>1d5fc4ccada74cbf9fac0bc62a160832</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Server Meta Data" display_value="Server Meta Data" name="x_2226556_server_0_server_meta" sys_domain="global" view="Default view">892cbb46a7014d76a99d88ab6810b046</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-10-27 10:33:45</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>grid</element>
+            <position>11</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-10-27 10:33:45</sys_created_on>
+            <sys_id>dd5df62648e14cd8a29f8b1f76fe1e25</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Server Meta Data" display_value="Server Meta Data" name="x_2226556_server_0_server_meta" sys_domain="global" view="Default view">892cbb46a7014d76a99d88ab6810b046</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-10-27 10:33:45</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>.end_split</element>
+            <position>12</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-10-27 10:33:45</sys_created_on>
+            <sys_id>8c7b797a368c4e35aa23f3a064880a52</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Server Meta Data" display_value="Server Meta Data" name="x_2226556_server_0_server_meta" sys_domain="global" view="Default view">892cbb46a7014d76a99d88ab6810b046</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-10-27 10:33:45</sys_updated_on>
+            <sys_user/>
+            <type>.end_split</type>
+        </sys_ui_element>
+        <sys_ui_section action="INSERT_OR_UPDATE">
+            <caption>Server Meta Data</caption>
+            <header>false</header>
+            <name>x_2226556_server_0_server_meta</name>
+            <roles/>
+            <sys_class_name>sys_ui_section</sys_class_name>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-10-27 06:32:16</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>892cbb46a7014d76a99d88ab6810b046</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>x_2226556_server_0_server_meta</sys_name>
+            <sys_overrides/>
+            <sys_package display_value="Server Inventory - XML" source="x_2226556_server_0">b00e05eb2f84931000eceb707fa4e31b</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="Server Inventory - XML">b00e05eb2f84931000eceb707fa4e31b</sys_scope>
+            <sys_update_name>sys_ui_section_892cbb46a7014d76a99d88ab6810b046</sys_update_name>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-10-27 06:32:16</sys_updated_on>
+            <sys_user/>
+            <title>false</title>
+            <view display_value="Default view" name="NULL">Default view</view>
+            <view_name/>
+        </sys_ui_section>
     </sys_ui_section>
-  </sys_ui_section>
 </record_update>

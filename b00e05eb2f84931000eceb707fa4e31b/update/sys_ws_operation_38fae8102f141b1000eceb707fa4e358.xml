@@ -1,0 +1,517 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ws_operation">
+    <sys_ws_operation action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <consumes>application/json</consumes>
+        <consumes_customized>false</consumes_customized>
+        <default_operation_uri/>
+        <enforce_acl/>
+        <http_method>POST</http_method>
+        <name>server_ingestion_data_source</name>
+        <operation_script><![CDATA[(function process(request, response) {
+
+    var CONFIG = {
+        table: 'x_2226556_server_0_cloud_data_ingestion',
+        fields: {
+            sourceSystem: 'source_system',
+            externalTrackingId: 'external_tracking_id',
+            action: 'action',
+            payload: 'payload',
+            state: 'sys_import_state',
+            responseMessage: 'response_message',
+            httpResponseCode: 'http_response_code',
+            errorMessage: 'error_message',
+            translatedEvent: 'translated_event',
+            integrationUser: 'integration_user'
+        },
+        states: {
+            received: 'pending',
+            validationFailed: 'error',
+            acknowledged: 'pending'
+        }
+    };
+
+    var HTTP = { badRequest: 400, accepted: 202, internalError: 500 };
+    var rawPayload = '';
+    var payload = null;
+    var stagingSysId = '';
+
+    try {
+        rawPayload = getRawRequestBody(request);
+        stagingSysId = createStagingRecord(rawPayload);
+
+        if (isEmpty(rawPayload)) {
+            failRequest(stagingSysId, HTTP.badRequest, 'Payload validation failed.', [
+                createError('$', 'EMPTY_PAYLOAD', 'Request payload is empty.')
+            ]);
+            return;
+        }
+
+        try {
+            payload = JSON.parse(rawPayload);
+            if (typeof payload === 'string') payload = JSON.parse(payload);
+        } catch (parseException) {
+            failRequest(stagingSysId, HTTP.badRequest, 'Payload validation failed.', [
+                createError('$', 'INVALID_JSON', 'Request payload is not valid JSON.')
+            ]);
+            return;
+        }
+
+        if (isJsonObject(payload)) payload.servers = normalizeArray(payload.servers);
+        updateStagingMetadata(stagingSysId, payload, rawPayload);
+
+        var errors = validateStructure(payload);
+        if (errors.length) {
+            failRequest(stagingSysId, HTTP.badRequest, 'Payload structure validation failed.', errors);
+            return;
+        }
+
+        errors = validateRequiredFields(payload);
+        if (errors.length) {
+            failRequest(stagingSysId, HTTP.badRequest, 'Required field validation failed.', errors);
+            return;
+        }
+
+        errors = validateAction(payload);
+        if (errors.length) {
+            failRequest(stagingSysId, HTTP.badRequest, 'Action validation failed.', errors);
+            return;
+        }
+
+        acknowledgeRequest(stagingSysId, payload);
+
+    } catch (exception) {
+        handleUnexpectedError(stagingSysId, exception);
+    }
+
+    /******************************************************************
+     * STAGING
+     ******************************************************************/
+
+    function createStagingRecord(requestPayload) {
+        var staging = new GlideRecord(CONFIG.table);
+        if (!staging.isValid()) throw new Error('Invalid staging table: ' + CONFIG.table);
+
+        staging.initialize();
+        setStagingValue(staging, 'payload', requestPayload || '', true);
+        setStagingValue(staging, 'state', CONFIG.states.received, true);
+        setStagingValue(staging, 'responseMessage', 'Request received. Validation is pending.', false);
+        setStagingValue(staging, 'integrationUser', gs.getUserID(), false);
+        setStagingValue(staging, 'httpResponseCode', '', false);
+        setStagingValue(staging, 'errorMessage', '', false);
+        setStagingValue(staging, 'translatedEvent', '', false);
+
+        var sysId = staging.insert();
+        if (!sysId) throw new Error('Unable to insert the staging record.');
+        return String(sysId);
+    }
+
+    function updateStagingMetadata(stagingId, payloadObject, originalPayload) {
+        if (!isJsonObject(payloadObject)) return;
+
+        var staging = getStagingRecord(stagingId);
+        if (!staging) throw new Error('Unable to find the staging record.');
+
+        var storedPayload = originalPayload || '';
+        try {
+            storedPayload = JSON.stringify(payloadObject);
+        } catch (ignore) {}
+
+        setStagingValue(staging, 'payload', storedPayload, true);
+        setStagingValue(staging, 'sourceSystem', toStringValue(payloadObject.sourceSystem), false);
+        setStagingValue(staging, 'externalTrackingId', toStringValue(payloadObject.orderId), false);
+        setStagingValue(staging, 'action', toStringValue(payloadObject.action).toUpperCase(), false);
+
+        if (!staging.update()) throw new Error('Unable to update staging metadata.');
+    }
+
+    function updateStagingFailure(stagingId, httpCode, message, errors) {
+        var staging = getStagingRecord(stagingId);
+        if (!staging) return;
+
+        setStagingValue(staging, 'state', CONFIG.states.validationFailed, true);
+        setStagingValue(staging, 'httpResponseCode', String(httpCode), false);
+        setStagingValue(staging, 'responseMessage', message, false);
+        setStagingValue(staging, 'errorMessage', safeStringify(errors), false);
+        staging.update();
+    }
+
+    function updateStagingAcknowledgment(stagingId, message) {
+        var staging = getStagingRecord(stagingId);
+        if (!staging) throw new Error('Unable to find the staging record.');
+
+        setStagingValue(staging, 'state', CONFIG.states.acknowledged, true);
+        setStagingValue(staging, 'httpResponseCode', String(HTTP.accepted), false);
+        setStagingValue(staging, 'responseMessage', message, false);
+        setStagingValue(staging, 'errorMessage', '', false);
+
+        if (!staging.update()) throw new Error('Unable to acknowledge the staging record.');
+    }
+
+    function getStagingRecord(stagingId) {
+        if (isEmpty(stagingId)) return null;
+
+        var staging = new GlideRecord(CONFIG.table);
+        return staging.get(String(stagingId)) ? staging : null;
+    }
+
+    function getStagingFieldName(record, logicalName) {
+        var configuredName = CONFIG.fields[logicalName];
+        if (configuredName && record.isValidField(configuredName)) return configuredName;
+
+        var customName = configuredName && configuredName.indexOf('u_') !== 0 ? 'u_' + configuredName : '';
+        return customName && record.isValidField(customName) ? customName : '';
+    }
+
+    function setStagingValue(record, logicalName, value, required) {
+        var fieldName = getStagingFieldName(record, logicalName);
+
+        if (!fieldName && required) {
+            throw new Error('Required staging field not found: ' + CONFIG.fields[logicalName]);
+        }
+
+        if (fieldName) record.setValue(fieldName, value === null || value === undefined ? '' : value);
+    }
+
+    /******************************************************************
+     * VALIDATION
+     ******************************************************************/
+
+    function validateStructure(payloadObject) {
+        var errors = [];
+
+        if (!isJsonObject(payloadObject)) {
+            errors.push(createError('$', 'INVALID_PAYLOAD_STRUCTURE', 'The root payload must be a JSON object.'));
+            return errors;
+        }
+
+        validateOptionalType(payloadObject.sourceSystem, 'string', 'sourceSystem', errors);
+        validateOptionalType(payloadObject.action, 'string', 'action', errors);
+
+        if (!isEmpty(payloadObject.orderId) &&
+            typeof payloadObject.orderId !== 'string' &&
+            typeof payloadObject.orderId !== 'number') {
+            errors.push(createError('orderId', 'INVALID_FIELD_TYPE', 'orderId must be a string or number.'));
+        }
+
+        payloadObject.servers = normalizeArray(payloadObject.servers);
+
+        if (payloadObject.servers === null) {
+            errors.push(createError('servers', 'INVALID_PAYLOAD_STRUCTURE', 'servers must be a JSON array.'));
+            return errors;
+        }
+
+        if (!payloadObject.servers.length) {
+            errors.push(createError('servers', 'EMPTY_SERVERS_ARRAY', 'servers must contain at least one server.'));
+            return errors;
+        }
+
+        for (var i = 0; i < payloadObject.servers.length; i++) {
+            validateServerStructure(payloadObject.servers[i], i, errors);
+        }
+
+        return errors;
+    }
+
+    function validateServerStructure(server, index, errors) {
+        var path = 'servers[' + index + ']';
+
+        if (!isJsonObject(server)) {
+            errors.push(createError(path, 'INVALID_PAYLOAD_STRUCTURE', path + ' must be a JSON object.'));
+            return;
+        }
+
+        if (!isJsonObject(server.location)) {
+            errors.push(createError(path + '.location', 'INVALID_PAYLOAD_STRUCTURE', path + '.location must be a JSON object.'));
+        }
+
+        if (!isJsonObject(server.support)) {
+            errors.push(createError(path + '.support', 'INVALID_PAYLOAD_STRUCTURE', path + '.support must be a JSON object.'));
+        }
+
+        validateOptionalType(server.serialNumber, 'string', path + '.serialNumber', errors);
+        validateOptionalType(server.hostName, 'string', path + '.hostName', errors);
+        validateOptionalType(server.dnsDomain, 'string', path + '.dnsDomain', errors);
+
+        if (isJsonObject(server.location)) {
+            validateOptionalNumber(server.location.slot, path + '.location.slot', errors);
+            validateOptionalNumber(server.location.floor, path + '.location.floor', errors);
+        }
+
+        if (isJsonObject(server.support) &&
+            !isEmpty(server.support.selfSupport) &&
+            typeof server.support.selfSupport !== 'boolean') {
+            errors.push(createError(
+                path + '.support.selfSupport',
+                'INVALID_FIELD_TYPE',
+                path + '.support.selfSupport must be a Boolean.'
+            ));
+        }
+    }
+
+    function validateRequiredFields(payloadObject) {
+        var errors = [];
+
+        validateRequired(payloadObject.sourceSystem, 'sourceSystem', errors);
+        validateRequired(payloadObject.orderId, 'orderId', errors);
+
+        for (var i = 0; i < payloadObject.servers.length; i++) {
+            var server = payloadObject.servers[i];
+            var path = 'servers[' + i + ']';
+
+            validateRequired(server.hostName, path + '.hostName', errors);
+            validateRequired(server.dnsDomain, path + '.dnsDomain', errors);
+            validateRequired(server.location.clli, path + '.location.clli', errors);
+            validateRequired(server.location.slot, path + '.location.slot', errors);
+            validateRequired(server.location.room, path + '.location.room', errors);
+            validateRequired(server.location.grid, path + '.location.grid', errors);
+            validateRequired(server.location.floor, path + '.location.floor', errors);
+            validateRequired(server.support.managedBy, path + '.support.managedBy', errors);
+            validateRequired(server.support.selfSupport, path + '.support.selfSupport', errors);
+            validateRequired(server.support.primarySA, path + '.support.primarySA', errors);
+            validateRequired(server.support.backUpSA, path + '.support.backUpSA', errors);
+            validateRequired(server.support.supportGroup, path + '.support.supportGroup', errors);
+        }
+
+        return errors;
+    }
+
+    function validateAction(payloadObject) {
+        var errors = [];
+        var action = toStringValue(payloadObject.action).toUpperCase();
+
+        if (!action) {
+            errors.push(createError('action', 'REQUIRED_FIELD_EMPTY', 'action is empty.'));
+        } else if (action !== 'ADD' && action !== 'DELETE') {
+            errors.push(createError('action', 'INVALID_ACTION', 'action must be ADD or DELETE.'));
+        }
+
+        return errors;
+    }
+
+    function validateRequired(value, fieldPath, errors) {
+        if (isEmpty(value)) errors.push(createError(fieldPath, 'REQUIRED_FIELD_EMPTY', fieldPath + ' is empty.'));
+    }
+
+    function validateOptionalType(value, type, fieldPath, errors) {
+        if (!isEmpty(value) && typeof value !== type) {
+            errors.push(createError(fieldPath, 'INVALID_FIELD_TYPE', fieldPath + ' must be a ' + type + '.'));
+        }
+    }
+
+    function validateOptionalNumber(value, fieldPath, errors) {
+        if (!isEmpty(value) && (typeof value !== 'number' || isNaN(value))) {
+            errors.push(createError(fieldPath, 'INVALID_FIELD_TYPE', fieldPath + ' must be a number.'));
+        }
+    }
+
+    function createError(field, code, message) {
+        return { field: field, code: code, message: message };
+    }
+
+    /******************************************************************
+     * ARRAY NORMALIZATION
+     ******************************************************************/
+
+    function normalizeArray(value) {
+        var result = [];
+        var parsed;
+        var length;
+        var i;
+
+        if (value === null || value === undefined) return null;
+
+        if (typeof value === 'string') {
+            if (isEmpty(value)) return null;
+
+            try {
+                parsed = JSON.parse(value);
+                return normalizeArray(parsed);
+            } catch (ignore) {
+                return null;
+            }
+        }
+
+        try {
+            if (Object.prototype.toString.call(value) === '[object Array]') {
+                for (i = 0; i < value.length; i++) result.push(normalizeObject(value[i]));
+                return result;
+            }
+        } catch (ignoreArrayType) {}
+
+        try {
+            length = Number(value.length);
+            if (!isNaN(length) && length >= 0) {
+                for (i = 0; i < length; i++) result.push(normalizeObject(value[i]));
+                return result;
+            }
+        } catch (ignoreArrayLike) {}
+
+        try {
+            if (typeof value.size === 'function' && typeof value.get === 'function') {
+                length = Number(value.size());
+                for (i = 0; i < length; i++) result.push(normalizeObject(value.get(i)));
+                return result;
+            }
+        } catch (ignoreJavaList) {}
+
+        try {
+            parsed = JSON.parse(JSON.stringify(value));
+            if (Object.prototype.toString.call(parsed) === '[object Array]') {
+                for (i = 0; i < parsed.length; i++) result.push(parsed[i]);
+                return result;
+            }
+        } catch (ignoreSerialization) {}
+
+        return null;
+    }
+
+    function normalizeObject(value) {
+        try {
+            return JSON.parse(JSON.stringify(value));
+        } catch (ignore) {
+            return value;
+        }
+    }
+
+    /******************************************************************
+     * RESPONSE
+     ******************************************************************/
+
+    function failRequest(stagingId, httpCode, message, errors) {
+        updateStagingFailure(stagingId, httpCode, message, errors);
+        sendResponse(httpCode, {
+            status: 'FAILED',
+            stagingRecordId: stagingId ? String(stagingId) : '',
+            message: message,
+            errors: errors
+        });
+    }
+
+    function acknowledgeRequest(stagingId, payloadObject) {
+        var message = 'Request acknowledged. The server ingestion status will be reported separately.';
+
+        updateStagingAcknowledgment(stagingId, message);
+        sendResponse(HTTP.accepted, {
+            status: 'ACKNOWLEDGED',
+            stagingRecordId: String(stagingId),
+            externalTrackingId: toStringValue(payloadObject.orderId),
+            sourceSystem: toStringValue(payloadObject.sourceSystem),
+            action: toStringValue(payloadObject.action).toUpperCase(),
+            serverCount: payloadObject.servers.length,
+            message: message
+        });
+    }
+
+    function handleUnexpectedError(stagingId, exception) {
+        var errorMessage = getExceptionMessage(exception);
+        var errors = [createError('$', 'INTERNAL_SERVER_ERROR', errorMessage)];
+
+        try {
+            if (stagingId) {
+                updateStagingFailure(
+                    stagingId,
+                    HTTP.internalError,
+                    'An unexpected error occurred while processing the request.',
+                    errors
+                );
+            }
+        } catch (ignore) {}
+
+        gs.error('CANOPI ingestion failed. Staging record: ' + stagingId + '. Error: ' + errorMessage);
+
+        sendResponse(HTTP.internalError, {
+            status: 'FAILED',
+            stagingRecordId: stagingId ? String(stagingId) : '',
+            message: 'An unexpected error occurred while processing the request.',
+            errors: errors
+        });
+    }
+
+    function sendResponse(httpCode, body) {
+        response.setStatus(httpCode);
+        response.setHeader('Content-Type', 'application/json');
+        response.setBody(body);
+    }
+
+    /******************************************************************
+     * GENERAL UTILITIES
+     ******************************************************************/
+
+    function getRawRequestBody(restRequest) {
+        var value;
+
+        try {
+            value = restRequest.body.dataString;
+            if (value !== null && value !== undefined && String(value) !== '[object Object]') {
+                return String(value);
+            }
+        } catch (ignoreDataString) {}
+
+        try {
+            value = restRequest.body.data;
+            if (value === null || value === undefined) return '';
+            return typeof value === 'string' ? value : JSON.stringify(value);
+        } catch (ignoreData) {
+            return '';
+        }
+    }
+
+    function isJsonObject(value) {
+        if (value === null || value === undefined || typeof value !== 'object') return false;
+
+        try {
+            if (Object.prototype.toString.call(value) === '[object Array]') return false;
+        } catch (ignore) {}
+
+        return true;
+    }
+
+    function isEmpty(value) {
+        return value === null ||
+            value === undefined ||
+            (typeof value === 'string' && value.replace(/^\s+|\s+$/g, '') === '');
+    }
+
+    function toStringValue(value) {
+        return value === null || value === undefined ? '' : String(value).replace(/^\s+|\s+$/g, '');
+    }
+
+    function safeStringify(value) {
+        try {
+            return JSON.stringify(value);
+        } catch (ignore) {
+            return String(value);
+        }
+    }
+
+    function getExceptionMessage(exception) {
+        return exception && exception.message ? String(exception.message) : String(exception || 'Unknown error.');
+    }
+
+})(request, response);]]></operation_script>
+        <operation_uri>/api/x_2226556_server_0/canopi_server_ingest/server_data_source</operation_uri>
+        <produces>application/json</produces>
+        <produces_customized>false</produces_customized>
+        <relative_path>/server_data_source</relative_path>
+        <request_example/>
+        <requires_acl_authorization>true</requires_acl_authorization>
+        <requires_authentication>true</requires_authentication>
+        <requires_snc_internal_role>true</requires_snc_internal_role>
+        <short_description/>
+        <support_trailing_slash>false</support_trailing_slash>
+        <sys_class_name>sys_ws_operation</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-10-28 17:39:53</sys_created_on>
+        <sys_id>38fae8102f141b1000eceb707fa4e358</sys_id>
+        <sys_mod_count>8</sys_mod_count>
+        <sys_name>server_ingestion_data_source</sys_name>
+        <sys_package display_value="Server Inventory - XML" source="x_2226556_server_0">b00e05eb2f84931000eceb707fa4e31b</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Server Inventory - XML">b00e05eb2f84931000eceb707fa4e31b</sys_scope>
+        <sys_update_name>sys_ws_operation_38fae8102f141b1000eceb707fa4e358</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-10-29 08:07:05</sys_updated_on>
+        <web_service_definition display_value="CANOPI Server Ingest">df6c273f600c4bb5b9b7bfa8073053d1</web_service_definition>
+        <web_service_version/>
+    </sys_ws_operation>
+</record_update>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="cmdb_identifier">
+    <cmdb_identifier action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <applies_to>cmdb_ci_server</applies_to>
+        <description>CANOPI Server Identifier</description>
+        <independent>true</independent>
+        <name>FQDN</name>
+        <sys_class_name>cmdb_identifier</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-10-28 07:24:59</sys_created_on>
+        <sys_id>c931e6c02f90d71000eceb707fa4e35a</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>cmdb_ci_server</sys_name>
+        <sys_package display_value="Server Inventory - XML" source="x_2226556_server_0">b00e05eb2f84931000eceb707fa4e31b</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Server Inventory - XML">b00e05eb2f84931000eceb707fa4e31b</sys_scope>
+        <sys_update_name>cmdb_identifier_c931e6c02f90d71000eceb707fa4e35a</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-10-28 07:24:59</sys_updated_on>
+    </cmdb_identifier>
+</record_update>

@@ -1,18 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
-  <sys_script_include action="INSERT_OR_UPDATE" apply_defaults="true">
-    <sys_id>f7578802ebec40c2985898ca1953b097</sys_id>
-    <sys_scope display_value="x_2226556_server_0">b00e05eb2f84931000eceb707fa4e31b</sys_scope>
-    <sys_update_name>sys_script_include_f7578802ebec40c2985898ca1953b097</sys_update_name>
-    <access>package_private</access>
-    <active>true</active>
-    <api_name>x_2226556_server_0.CanopiServerProcessor</api_name>
-    <caller_access/>
-    <client_callable>false</client_callable>
-    <description>Processes CANOPI staging records through ETL mapping and IRE to create/update cmdb_ci_server CIs</description>
-    <mobile_callable>false</mobile_callable>
-    <name>CanopiServerProcessor</name>
-    <sandbox_callable>false</sandbox_callable>
-    <script><![CDATA[var CanopiServerProcessor = Class.create()
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>package_private</access>
+        <active>true</active>
+        <api_name>x_2226556_server_0.CanopiServerProcessor</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Processes CANOPI staging records through ETL mapping and IRE to create/update cmdb_ci_server CIs</description>
+        <mobile_callable>false</mobile_callable>
+        <name>CanopiServerProcessor</name>
+        <sandbox_callable>false</sandbox_callable>
+        <script><![CDATA[var CanopiServerProcessor = Class.create()
 CanopiServerProcessor.prototype = {
     initialize: function() {},
 
@@ -209,6 +206,17 @@ CanopiServerProcessor.prototype = {
     type: 'CanopiServerProcessor'
 }
 ]]></script>
-    <sys_name>CanopiServerProcessor</sys_name>
-  </sys_script_include>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-10-26 17:11:33</sys_created_on>
+        <sys_id>f7578802ebec40c2985898ca1953b097</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>CanopiServerProcessor</sys_name>
+        <sys_package display_value="Server Inventory - XML" source="x_2226556_server_0">b00e05eb2f84931000eceb707fa4e31b</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Server Inventory - XML">b00e05eb2f84931000eceb707fa4e31b</sys_scope>
+        <sys_update_name>sys_script_include_f7578802ebec40c2985898ca1953b097</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-10-26 17:11:33</sys_updated_on>
+    </sys_script_include>
 </record_update>

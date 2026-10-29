@@ -1,19 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update>
-  <sys_ui_form_sections form_id="c177b463f9804628a29c9f63026b8395" sys_domain="global" table="x_2226556_server_0_sys_type_val">
-    <sys_ui_form_section action="INSERT_OR_UPDATE" apply_defaults="true">
-      <position>0</position>
-      <sys_id>b4f4f50b96824d7194e965fa7201e7ad</sys_id>
-      <sys_ui_form display_value="x_2226556_server_0_sys_type_val" name="x_2226556_server_0_sys_type_val" sys_domain="global" view="Default view">c177b463f9804628a29c9f63026b8395</sys_ui_form>
-      <sys_ui_section caption="System Type" display_value="System Type" name="x_2226556_server_0_sys_type_val" sys_domain="global" view="Default view">eaae345adb61462fb2b89257c08bff14</sys_ui_section>
-    </sys_ui_form_section>
-    <sys_ui_form action="INSERT_OR_UPDATE" apply_defaults="true">
-      <name>x_2226556_server_0_sys_type_val</name>
-      <roles/>
-      <sys_id>c177b463f9804628a29c9f63026b8395</sys_id>
-      <sys_scope display_value="x_2226556_server_0">b00e05eb2f84931000eceb707fa4e31b</sys_scope>
-      <sys_user/>
-      <view display_value="Default view" name="NULL">Default view</view>
-      <view_name/>
-    </sys_ui_form>
-  </sys_ui_form_sections>
+    <sys_ui_form_sections form_id="c177b463f9804628a29c9f63026b8395" sys_domain="global" table="x_2226556_server_0_sys_type_val" version="3">
+        <sys_ui_form_section action="INSERT_OR_UPDATE">
+            <position>0</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-10-27 10:33:44</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>b4f4f50b96824d7194e965fa7201e7ad</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_overrides/>
+            <sys_ui_form display_value="x_2226556_server_0_sys_type_val" name="x_2226556_server_0_sys_type_val" sys_domain="global" view="Default view">c177b463f9804628a29c9f63026b8395</sys_ui_form>
+            <sys_ui_section caption="System Type" display_value="System Type" name="x_2226556_server_0_sys_type_val" sys_domain="global" view="Default view">eaae345adb61462fb2b89257c08bff14</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-10-27 10:33:44</sys_updated_on>
+        </sys_ui_form_section>
+        <sys_ui_form action="INSERT_OR_UPDATE">
+            <name>x_2226556_server_0_sys_type_val</name>
+            <roles/>
+            <sys_class_name>sys_ui_form</sys_class_name>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-10-27 06:32:16</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>c177b463f9804628a29c9f63026b8395</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>x_2226556_server_0_sys_type_val</sys_name>
+            <sys_overrides/>
+            <sys_package display_value="Server Inventory - XML" source="x_2226556_server_0">b00e05eb2f84931000eceb707fa4e31b</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="Server Inventory - XML">b00e05eb2f84931000eceb707fa4e31b</sys_scope>
+            <sys_update_name>sys_ui_form_sections_c177b463f9804628a29c9f63026b8395</sys_update_name>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-10-27 06:32:16</sys_updated_on>
+            <sys_user/>
+            <view display_value="Default view" name="NULL">Default view</view>
+            <view_name/>
+        </sys_ui_form>
+    </sys_ui_form_sections>
 </record_update>
